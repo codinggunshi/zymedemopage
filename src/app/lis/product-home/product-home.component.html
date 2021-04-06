@@ -1,0 +1,122 @@
+<div class="product-container">
+  <div class="header">
+    <div class="header--text u-margin-button">Product Catalog</div>
+    <div class="header--search">
+      <app-input-box [showLabel]="false" [inputBoxClass]="'bordered-primary-transparent'" [placeholder]="'Search for a product, brand or condition'"></app-input-box>
+      <div class="header--right-bar">
+          <i class="fas fa-search header--icon"></i>
+      </div>
+    </div>
+    <div class="header--switch-text" tooltip="Your Client have access to self-serve & purchase" tooltip-position="bottom">Client Visibility<i class="fas fa-question header--switch-icon" ></i></div><app-switch class="header--switch"></app-switch>
+  </div>
+  <app-tabs [closable]="false" [tabStyle]="{boxShadow: 'none'}">
+    <app-tab [tabTitle]="'All Category'" [tabIcon]="'icon ion-md-grid'">
+      <div *ngIf="!selectedCategory" class="content">
+        <div class="content__sider">
+          <div *ngIf="showFormula" class="content__sider--top">
+            <div *ngIf="!showWellness || !showFormula" class="content__sider--pane" (click)="viewAll()">
+              <div class="content__sider--pane--text">View All</div>
+            </div>
+            <div *ngIf="!showWellness && showFormula" class="content__sider--pane" (click)="viewWellness()">
+              <div class="content__sider--pane--text">Wellness</div>
+              <div><i class="fas fa-angle-right content__sider--pane--icon"></i></div>
+            </div>
+            <div class="content__sider--pane content__sider--pane--selected">
+              <div class="content__sider--pane--text content__sider--pane--text--selected">Formula</div>
+              <i class="fas fa-angle-right content__sider--pane--icon"></i>
+            </div>
+          </div>
+          <div *ngIf="showWellness" class="content__sider--bottom">
+              <div *ngIf="!showWellness || !showFormula" class="content__sider--pane" (click)="viewAll()">
+                <div class="content__sider--pane--text">View All</div>
+              </div>
+              <div *ngIf="showWellness && !showFormula" class="content__sider--pane" (click)="viewFormula()">
+                <div class="content__sider--pane--text">Formula</div>
+                <div><i class="fas fa-angle-right content__sider--pane--icon"></i></div>
+              </div>
+              <div class="content__sider--pane content__sider--pane--selected">
+                <div class="content__sider--pane--text content__sider--pane--text--selected">Wellness</div>
+                <div><i class="fas fa-angle-right content__sider--pane--icon"></i></div>
+              </div>
+              <div *ngIf="showWellness && showFormula" class="content__sider--brand">
+                <div class="content__sider--brand--title">
+                  <div class="content__sider--brand--text content__sider--pane--text--selected">Featured Brands</div>
+                  <i class="fas fa-angle-down content__sider--brand--icon"></i>
+                </div>
+                <div class="content__sider--brand--image content__sider--brand--image--1"></div>
+                <div class="content__sider--brand--image content__sider--brand--image--2"></div>
+                <div class="content__sider--brand--image content__sider--brand--image--3"></div>
+                <div class="content__sider--brand--image content__sider--brand--image--4"></div>
+                <div class="content__sider--brand--image content__sider--brand--image--5"></div>
+                <div class="content__sider--brand--image content__sider--brand--image--6"></div>
+              </div>
+          </div>
+        </div>
+        <div class="content__main" [ngClass]="showFormula !== showWellness ? 'u-panel-margin-top' : ''">
+          <div *ngIf="showFormula" class="content__main--panel">
+            <div *ngFor="let item of items index as i" class="content__main--panel--text hover-effect-button-round" (click)="showProductList(item)"><i class="fas fa-caret-right content__main--panel--icon"></i>&nbsp;&nbsp;&nbsp;{{ item }}</div>
+          </div>
+          <div *ngIf="showWellness" class="content__main--panel">
+              <div *ngFor="let item of items2 index as i" class="content__main--panel--text hover-effect-button-round hover-effect-button-round--modified" (click)="showProductList(item)"><i class="fas fa-caret-right content__main--panel--icon content__main--panel--icon--rotate"></i>&nbsp;&nbsp;&nbsp;{{ item }}</div>
+          </div>
+        </div>
+      </div>
+      <app-product-list *ngIf="selectedCategory" [productList]="selectedCategory" (viewCateTriggered)="returnToCategory($event)"></app-product-list>
+    </app-tab>
+    <app-tab [tabTitle]="'Your Favorites'" [tabIcon]="'icon ion-md-heart'">
+      <div *ngIf="!favoriteProds || favoriteProds.length === 0" class="favorite-container__empty">
+        <div class="favorite-container__empty--title">Your favorite list is empty</div>
+        <div class="favorite-container__empty--text">To add any product to favorite, click 'heart' icon under that product.</div>
+      </div>
+      <div *ngIf="favoriteProds && favoriteProds.length !== 0" class="product-list">
+        <div *ngFor="let product of favoriteProds index as i" class="product-item">
+          <div class="product-item--img" [ngStyle]="{backgroundImage: 'url(../../../assets/supplements/' + product.name + '.png)'}"></div>
+          <div class="product-item--like"><div class="product-item--like--text" (click)="modalService.getModal('favoriteQuickViewModal').open()">quick start</div></div>
+          <div class="product-item--title">{{ product.title }}</div>
+          <div class="product-item--text">{{ product.text }}</div>
+          <div class="product-item--text"><span class="full-price" style="margin-right: .5rem">{{ product.orginalPrice }}</span>{{ product.price }}</div>
+        </div>
+      </div>
+    </app-tab>
+  </app-tabs>
+</div>
+
+
+
+
+
+<!-- modal for favorite tab-->
+<app-modal #favoriteQuickViewModal identifier="favoriteQuickViewModal">
+    <div class="quick-view-container">
+        <div class="quick-view-container__left" [ngStyle]="{backgroundImage: 'url(../../../assets/supplements/1.png)'}"></div>
+        <div class="quick-view-container__right">
+          <div class="item">
+            <div class="quick-view-container__title">Aqua-E</div>
+            <div class="quick-view-container__subtitle">Water-Soluble Vitamin E TOCOPHEROLS + TOCOTRIENOLS</div>
+          </div>
+          <div class="quick-view-container__text">
+              Aqua-E® is a unique, patented ** product which supplies the complete Vitamin E family of tocopherols plus 
+              tocotrienols in water soluble form. It is particularly rich in gamma-tocopherol and tocotrienols.
+          </div>
+          <div class="quick-view-container__link">
+            See product details
+          </div>
+          <div>
+            <div> SIZE: <span class="quick-view-container__text">{{ selectedCapsuleAmount }} capsules</span></div>
+            <span *ngFor="let capsule of capsulesInfo index as i" class="quick-view-container__btn" [ngClass]="capsule.focus ? 'quick-view-container__btn--focus' : ''" (click)="capsuleSelected(i)">{{ capsule.amount }} capsules</span>
+          </div>
+          <div class="quick-view-container__footer">
+            <div class="quick-view-container__footer--price">
+              <div><span class="full-price u-price-margin-right" style="margin-right: 1rem">$45.90</span>$38.61</div>
+              <div class="quick-view-container__footer--price__text">FREE SHIPPING</div>
+            </div>
+            <div class="quick-view-container__footer--operation">
+              <app-dropdown-button-float class="quick-view-container__footer--select" [dropdownClass]="'dropdown-green'"[items]="productQuantityList" [selected]="'1'"></app-dropdown-button-float>
+              <app-button-standard class="u-button-margin-bottom" [label]="'ADD TO PROTOCOL'" [buttonStyle]="{padding: '1.15rem .5rem', fontSize: '1.4rem', borderRadius: 0}"></app-button-standard>
+              <div></div>
+              <app-button-standard [label]="'ADD TO FAVORITES'" [buttonClass]="'btn-bordered'" [buttonStyle]="{padding: '1.15rem .4rem', fontSize: '1.4rem'}"></app-button-standard>
+            </div>
+          </div>
+        </div>
+    </div>
+</app-modal>

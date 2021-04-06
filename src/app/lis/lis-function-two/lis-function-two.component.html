@@ -1,0 +1,360 @@
+<!-- header -->
+<app-header-menu [items]="headerItems" [selectedItem]="'Home'"></app-header-menu>
+
+<!-- top float alert -->
+<app-alert-float [showAlert]="true" [type]="'warning'" [msg]="'Please fill all the required field'"></app-alert-float>
+
+<!--top alert-->
+<app-alert [text]="test"></app-alert>
+
+<!-- navigation -->
+<app-float-nav [items]="floatNavItems"></app-float-nav>
+
+<div class="container">
+    <!-- button -->
+    <div class="item">
+        <app-button-round (click)="!disabled && clicked()" [label]="'button'" [disabled]="disabled"></app-button-round>
+        <div style="margin: 3rem"></div>
+        <app-button-round (click)="clicked()" [label]="'button'" [buttonStyle]="{padding: '.75rem 2.5rem'}" [buttonClass]="'btn-primary-light'"></app-button-round>
+        <div style="margin: 3rem"></div>
+        <app-button-round (click)="clicked()" [label]="'button'" [buttonStyle]="{padding: '.75rem 2.5rem', fontSize: '1.2rem'}"></app-button-round>
+    </div>
+    <div class="item">
+        <app-button-standard (click)="!disabled && clicked()" [label]="'button'"></app-button-standard>
+        <div style="margin: 1rem"></div>
+        <app-button-standard [label]="'button'" [buttonClass]="'btn-primary-dark'"></app-button-standard>
+        <p>You can also style the button the way you want, just like the previous round button</p>
+    </div>
+    <div class="item">
+        <app-button-flat [label]="'button &rarr;'" [buttonClass]="'btn__border-bottom'"></app-button-flat>
+    </div>
+    <div class="item">
+        <app-button-arrow [label]="'button'"></app-button-arrow>
+    </div>
+    <div class="item">
+        <app-button-slide [label]="'button'"></app-button-slide>
+    </div>
+    <div class="item">
+        <app-button-circle (click)="!disabled && clicked()" [buttonClass]="'primary-dark'" [iconClass]="'icon ion-md-link'"></app-button-circle>
+        <app-button-circle [iconClass]="'icon ion-md-link'" [scale]="0.7"></app-button-circle>
+    </div>
+
+    <!-- input -->
+    <div class="item">
+        <app-radio-button [label]="'radio'" [checked]="true"></app-radio-button>
+        <app-radio-button [label]="'radio'" [scale]="0.5" [radioClass]="'radio-primary'"></app-radio-button>
+    </div>
+    <div class="item">
+        <app-check-box [label]="'checkbox'"></app-check-box>
+        <div style="margin: 1rem"> </div> <!-- use global utility classes instead in a real app, DO NOT use inline style-->
+        <app-check-box [checkboxClass]="'checkbox-primary'"></app-check-box>
+    </div>
+
+    <div class="item">
+        <app-checkbox-withimg [label]="'checkbox-withimg'" [checkboxClass]="[ng-reflect-model]===true ? 'checkbox-primary' : ''"></app-checkbox-withimg>
+    </div>
+    <div class="item">
+        <app-input-box [searchDropdown]="true" [items]="items" [(ngModel)]="inputBoxVal"></app-input-box>
+        <p>Dynamic search dropdown can bind to any input element. Type a letter, e.g "d", to show.
+    </div>
+
+
+    <div class="item">
+        <app-input-box [(ngModel)]="inputBoxVal2" [searchDropdown]="true" [items]="items" (listItemSelected)="test($event)"></app-input-box>
+        <p>Another example for va-portal
+    </div>
+
+    <div class="item">
+        <app-input-box-withbtn [(ngModel)]="inputBoxVal3"></app-input-box-withbtn>
+        <p>An example for inputbox-withbtn</p>
+    </div>
+    
+    <div class="item">
+        <app-input-field [(ngModel)]="inputFieldVal"></app-input-field>
+    </div>
+    <div class="item">
+        <app-search-slide [(ngModel)]="searchSlideModel"></app-search-slide>
+    </div>
+    <div class="item">
+        <app-input-round [(ngModel)]="inputRoundVal"></app-input-round>
+    </div>
+
+    <!-- card -->
+    <div class="item">
+        <app-card [title]="'Simple Card'">
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                numquam deserunt
+                quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                neque quas!</div>
+        </app-card>
+    </div>
+    <div class="item">
+        <app-card [title]="'Card With Image'" [image]=true [imgUrl]="'jake.jpg'" [style]="{width: '32rem'}">
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                numquam deserunt
+                quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                neque quas!</div>
+        </app-card>
+    </div>
+    <div class="item">
+        <app-card-rotatable [styleFront]="{background: 'var(--color-light-gray-1)'}">
+        </app-card-rotatable>
+    </div>
+    <div class="item">
+        <app-card-hoverable [title]="'Card Hoverable'" [subtitle]="'Advanced Tooltip or Name Card'" [imgUrl]="'../../../../assets/images/nat-8.jpg'">
+            <p>Hello There</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua</p>
+        </app-card-hoverable>
+    </div>
+
+    <!-- text -->
+    <div class="item item__text">
+        <app-textarea [(ngModel)]="textareaModel" [row]="4" [maxLength]="511"></app-textarea>
+    </div>
+    <div class="item item__text-notebook">
+        <app-textarea-notebook [row]="4" [(ngModel)]="textareanotebookModel"></app-textarea-notebook>
+    </div>
+
+    <!-- tooltip -->
+    <div class="item">
+        <span tooltip="Simple Tooltip" tooltip-position="right"><i class="icon ion-md-information-circle" style="font-size: 24px"></i></span>
+        <p>Hover to view tooltip. Can bind to any element</p>
+    </div>
+
+    <!-- dropdown -->
+    <div class="item">
+        <app-dropdown-button-float [items]="dropdownFloatList" [selected]="testInitDropdown"></app-dropdown-button-float>
+    </div>
+    <div class="item">
+        <app-multiselect-dropdown [placeholder]="'Please Select:'" [data]="dropdownList" [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings">
+        </app-multiselect-dropdown>
+    </div>
+    <div class="item">
+        <app-multiselect-dropdown [placeholder]="'Please Select:'" [data]="dropdownListSingle" [(ngModel)]="selectedItemsSingle"
+            [settings]="dropdownSettingsSingle">
+        </app-multiselect-dropdown>
+    </div>
+    <div class="item">
+        <app-customized-multidropdown-searchbar [placeholder]="'Please Select:'" [data]="dropdownList" [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings">
+        </app-customized-multidropdown-searchbar>
+    </div>
+    
+
+    <!-- date picker -->
+    <div class="item">
+        <app-input-box [type]="'date'" [placeholder]="'date'"></app-input-box>
+        <p>Date picker can bind to any input element</p>
+    </div>
+    <div class="item">
+        <app-input-field [type]="'date'" [placeholder]="'date'"></app-input-field>
+    </div>
+
+    <!-- tag -->
+    <div class="item">
+        <app-tag [label]="'html'"></app-tag>
+    </div>
+    <div class="item">
+        <app-tag [label]="'css'" [bordered]="true"></app-tag>
+    </div>
+
+    <!-- chip -->
+    <div class="item">
+        <app-chip [text]="'chip demo'" [label]="'2'" [closable]="true"></app-chip>
+    </div>
+
+    <!-- toast -->
+    <div class="item">
+        <p>Click below to show toast. This directive can bind to any element</p>
+        <app-chip appToast [text]="'Toast directive'" [toastMessage]="'This is some test message'"></app-chip>
+    </div>
+
+    <div class="item">
+        <p>test toast component</p>
+        <app-toast></app-toast>
+    </div>
+
+    <!-- notification icon -->
+    <div class="item">
+        <app-icon-notification [iconClass]="'icon ion-md-notifications'" [value]="3"></app-icon-notification>
+    </div>
+
+    <!-- progress bar -->
+    <div class="item">
+        <app-progress-bar [percentage]="63" [showPercentage]="false"></app-progress-bar>
+        <app-progress-bar [type]="'circle'" [percentage]="29" [scale]="0.7"></app-progress-bar>
+        <app-progress-bar [type]="'pie'" [scale]="1.3" [percentage]="78"></app-progress-bar>
+    </div>
+    <div class="item">
+        <app-progress-bar [height]="'3'"></app-progress-bar>
+        <app-progress-bar [type]="'circle'" [percentage]="48" [showPercentage]="false"></app-progress-bar>
+        <app-progress-bar [type]="'pie'" [percentage]="40"></app-progress-bar>
+    </div>
+    <div class="item">
+        <app-progress-bar [height]="'1'" [percentage]="99"></app-progress-bar>
+        <app-progress-bar [type]="'circle'" [percentage]="100"></app-progress-bar>
+        <app-progress-bar [type]="'pie'" [percentage]="25"></app-progress-bar>
+    </div>
+
+    <!-- mask -->
+    <div class="item">
+        
+        <div style="margin: 3rem"></div>
+        <app-input-box id="numberOnly" [mask]="'0*.00'" (ngModelChange)="numberOnly()" [placeholder]="'number only'"></app-input-box>
+    </div>
+    <div class="item">
+        <app-search-slide [mask]="'00000-0000'" [placeholder]="'zip only'"></app-search-slide>
+        <div style="margin: 3rem"></div>
+        <app-input-round [mask]="'0000 0000 0000 0000'" [placeholder]="'credit card only'"></app-input-round>
+    </div>
+    <div class="item">
+        <app-tree [showSearch]="true" [items]="treeItems" [width]="20" [height]="70"></app-tree>
+    </div>
+
+    <!-- alert -->
+    <div class="item">
+        <app-alert [type]="'info'" [text]="'This is an info message.'"></app-alert>
+        <app-alert [type]="'success'" [text]="'This is a success message.'"></app-alert>
+        <app-alert [type]="'warn'" [text]="'This is a warn message.'"></app-alert>
+        <app-alert [type]="'error'" [text]="'This is an error messages.'"></app-alert>
+    </div>
+
+    <!-- file upload -->
+    <div class="item item__upload">
+        <app-file-upload></app-file-upload>
+    </div>
+
+    <!-- step bar, not formalized yet-->
+    <div class="item item__step-bar">
+        <app-step-bar></app-step-bar>
+    </div>
+    <div class="item item__step-bar-circle">
+        <app-step-bar-circle></app-step-bar-circle>
+    </div>
+
+    <div class="item">
+        <!-- modal -->
+        <app-button-round (click)="modalService.getModal('myModal').open()" [label]="'Open Modal'"></app-button-round>
+        <app-button-round (click)="modalService.getModal('nestedModal').open()" [label]="'Open Nested Modal'"></app-button-round>
+        <div style="margin: 3rem"></div>
+
+        <!-- icon group -->
+        <!-- not a component, becuase it's uncessary. Sass style located in sass/component/icon-group.scss, import sass file when needed in your page -->
+        <!-- in a real app, obviously we should use a ngFor loop -->
+        <div class="icon-group">
+            <img src="../../../assets/images/user-3.jpg" alt="image 1" class="icon-group__photo">
+            <img src="../../../assets/images/user-4.jpg" alt="image 2" class="icon-group__photo">
+            <img src="../../../assets/images/user-5.jpg" alt="image 3" class="icon-group__photo">
+            <img src="../../../assets/images/user-6.jpg" alt="image 4" class="icon-group__photo">
+        </div>
+    </div>
+
+    <!-- chart -->
+    <div class="item item__chart item__bar">
+        <ngx-charts-bar-vertical [scheme]="colorScheme" [results]="single" [gradient]="gradient" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+    </div>
+    <div class="item item__chart item__pie">
+        <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="single" [legend]="showLegend" [explodeSlices]="explodeSlices"
+            [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient" (select)="onSelect($event)">
+        </ngx-charts-pie-chart>
+    </div>
+    <div class="item item__chart item__pie-2">
+        <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="single" [legend]="showLegend" [explodeSlices]="explodeSlices"
+            [labels]="showLabels" [doughnut]="false" [gradient]="gradient" (select)="onSelect($event)">
+        </ngx-charts-pie-chart>
+    </div>
+    <div class="item item__chart item__guage">
+        <ngx-charts-gauge [view]="view" [scheme]="colorScheme" [results]="single" [min]="0" [max]="100" [angleSpan]="240"
+            [startAngle]="-120" [units]="'kg'" [bigSegments]="10" [smallSegments]="5" (select)="onSelect($event)">
+        </ngx-charts-gauge>
+    </div>
+
+    <div class="item item__chart item__bar-2">
+        <ngx-charts-bar-horizontal [scheme]="colorScheme" [results]="single" [gradient]="gradient" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+        </ngx-charts-bar-horizontal>
+    </div>
+
+    <div class="item item__chart item__line">
+        <ngx-charts-line-chart [scheme]="colorScheme" [results]="multi" [gradient]="gradient" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+        </ngx-charts-line-chart>
+    </div>
+
+    <div class="item item__chart item__number">
+        <ngx-charts-number-card [scheme]="colorScheme" [results]="single" (select)="onSelect($event)">
+        </ngx-charts-number-card>
+    </div>
+
+    <div class="item  item__chart item__bubble">
+        <ngx-charts-bubble-chart [scheme]="colorScheme" [results]="bubble" (select)="onSelect($event)">
+        </ngx-charts-bubble-chart>
+    </div>
+
+    <div class="item item__chart item__curve">
+        <ngx-charts-line-chart [scheme]="colorScheme" [results]="multiCurve" [gradient]="gradient" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [curve]="curve" (select)="onSelect($event)">
+        </ngx-charts-line-chart>
+    </div>
+
+    <div class="item item__tabs">
+        <app-tabs [closable]="true">
+            <app-tab [tabTitle]="'Tab 1'" [tabIcon]="'icon ion-md-bicycle'">
+                <app-card [style]="{borderRadius: 0, boxShadow: 'none', heigth: '100%'}">
+                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                         numquam deserunt
+                         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                         neque quas!
+                         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                         neque quas!</div>
+                </app-card>
+            </app-tab>
+            <app-tab [tabTitle]="'Tab 2'" [tabIcon]="'icon ion-md-airplane'">
+                <app-card [style]="{borderRadius: 0, boxShadow: 'none', heigth: '100%'}">
+                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                         numquam deserunt
+                         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                         neque quas!</div>
+                </app-card>
+            </app-tab>
+            <app-tab [tabTitle]="'Tab 3'" [tabIcon]="'icon ion-md-car'">
+                <app-card [style]="{borderRadius: 0, boxShadow: 'none', heigth: '100%'}">
+                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                         numquam deserunt
+                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                         numquam deserunt
+                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                         numquam deserunt
+                         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                         neque quas!</div>
+                </app-card>
+            </app-tab>
+        </app-tabs>
+    </div>
+
+    <div></div>
+    <div class="item"><app-switch></app-switch></div>
+
+</div>
+
+<!-- modal content -->
+<!-- can be placed in anywhere on the single page application, not restricted to this view -->
+<app-modal #myModal identifier="myModal">
+    <div style="width: 80rem; height: 50rem">
+        <app-button-standard (click)="modalService.getModal('nestedModal').open()" [label]="'Open Nested Modal'"></app-button-standard>
+        <app-chip appToast [text]="'Toast directive'" [toastMessage]="'This is some test message'"></app-chip>
+    </div>
+</app-modal>
+
+<app-modal #nestedModal identifier="nestedModal">
+    <div style="width: 80rem; height: 30rem">
+    </div>
+</app-modal>

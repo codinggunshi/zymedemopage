@@ -1,0 +1,77 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+$local-background-color: #20B29D;
+
+.container {
+  background-image: url("images/404_not_found.png");
+  background-size: 130rem auto;
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.grid {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: grid;
+  grid-template-rows: 1fr 55% 10%;
+}
+
+.content {
+  align-self: center;
+  margin: auto;
+
+  &__text--1 {
+    font-size: 4rem;
+    color: rgba($color-text, .7);
+  }
+
+  &__text--2 {
+    font-size: 2.8rem;
+    color: rgba($color-text, .7);
+  }
+
+  &__text--3 {
+    font-size: 2.8rem;
+    color: $local-background-color;
+    cursor: pointer;
+    transition: all .2s;
+    display: inline-block;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.footer {
+  background-color: $local-background-color;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  &__text {
+    color: rgba($color-white, .6);
+    font-size: 1.4rem;
+  }
+
+  &__icon {
+    color: rgba($color-white, .8);
+    font-size: 3.2rem;
+    margin-right: 2rem;
+    cursor: pointer;
+    display: inline-block;
+    transition: all .2s;
+
+    &:hover {
+      transform: scale(1.1);
+      color: rgba($color-white, 1);
+    }
+  }
+}

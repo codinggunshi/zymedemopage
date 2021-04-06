@@ -1,0 +1,116 @@
+@import "../../../_scss/abstracts/variables.scss";
+@import "../../../_scss/abstracts/mixins.scss";
+
+
+.preview-container {
+    display: grid;
+    
+    grid-template-columns: repeat(5, 1fr);
+    
+    grid-gap: 2rem;
+  
+    min-height: 20rem;
+  
+    position: relative;
+  }
+  
+  .preview-header {
+    grid-column: 1/-1;
+    height: 3rem;
+  }
+  
+  .preview-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &__delete {
+        position: absolute;
+        top: -1rem;
+        right: -.5rem;
+        font-size: 2.4rem;
+        z-index: 1;
+        color: $color-text;
+      }
+      
+      &__add {
+        position: absolute;
+        top: -2rem;
+        left: 0;
+        font-size: 3.6rem;
+        cursor: pointer;
+        color: $color-primary;
+        transition: transform .3s;
+      
+        &:hover {
+          color: $color-primary-dark;
+        }
+      }
+      
+      &__upload {
+        position: absolute;
+        top: -.7rem;
+        right: 0;
+      }
+  }
+  
+  .preview-img-container {
+    max-width: 10rem;
+    position: relative;
+  
+    &:hover > .preview-img__overlay{
+      opacity: .9;
+    }
+  }
+  
+  .preview-img {
+    width: 100%;
+    height: auto;
+    position: relative;
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: $color-primary;
+        color: $color-white;
+        border-radius: .3rem;
+      
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  }
+  
+  .preview-text {
+    white-space: nowrap;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .preview-upload-info {
+    @include absCenter;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__cloud {
+        font-size: 3.6rem;
+        color: rgba(178, 178, 178, 0.7);
+      }
+      
+      &__text {
+        font-weight: 600;
+        color: $color-text;
+      }
+  }

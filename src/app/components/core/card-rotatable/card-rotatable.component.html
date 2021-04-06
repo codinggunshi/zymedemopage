@@ -1,0 +1,7 @@
+<div class="card" [ngStyle]="styleCard" [ngClass]="styleCardClass">
+    <div class="card__side card__side--front" [ngStyle]="styleFront" [ngClass]="styleFrontClass">
+        <ng-content></ng-content>
+    </div>
+    <div class="card__side card__side--back" [ngStyle]="styleBack" [ngClass]="styleBackClass">                      
+    </div>
+</div>

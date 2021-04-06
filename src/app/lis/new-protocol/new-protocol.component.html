@@ -1,0 +1,210 @@
+<ng-scrollbar [autoHide]="false">
+  <div class="protocol-container">
+      <div class="header">
+        <div class="header--text u-margin-button">New Protocols for</div>
+        <div class="header--search">
+          <app-input-box [showLabel]="false" [inputBoxClass]="'bordered-primary-transparent'" [placeholder]="'Search current clients'"></app-input-box>
+          <div class="header--right-bar">
+            <i class="fas fa-search header--icon"></i>
+          </div>
+        </div>
+        <div class="header__button">Add a new client</div>
+      </div>
+      <div class="header header--bottom">
+          <div class="header--text u-margin-button">Name your protocol:</div>
+          <div class="header--search header--bottom__search">
+            <app-input-box [showLabel]="false" [inputBoxClass]="'bordered-primary-transparent'" [placeholder]="'Condition Name'" [searchDropdown]="true" [items]="items"></app-input-box>
+          </div>
+          <div class="header__button">Manage your protocol</div>
+          <div class="header__panel">
+            <app-button-standard [label]="'Favorite'" [buttonClass]="'btn-green'" [buttonStyle]="{padding: '.9rem 3.2rem', fontWeight: 'bold'}"></app-button-standard> <!-- add 2px to compensate the 2px border -->
+            <app-button-standard [label]="'Documents'" [buttonClass]="'btn-bordered-green'" [buttonStyle]="{padding: '.7rem 3rem', fontWeight: 'bold'}"></app-button-standard>
+          </div>
+        </div>
+      <div class="content">
+        <div class="content__left" [ngStyle]="expand[0] && {gridTemplateRows: 'auto min-content min-content min-content'} || expand[1] && {gridTemplateRows: 'min-content auto min-content min-content'}
+                                             || expand[2] && {gridTemplateRows: 'min-content min-content auto min-content'} || expand[3] && {gridTemplateRows: 'min-content min-content min-content auto'}">
+          <div class="content__pane" [ngClass]="expand[0] ? 'item' : ''">
+            <div class="content__right--header" [ngClass]="expand[0] ? '' : 'content__right--header--collapse'" (click)="!expand[0] && switchExpand(0)">
+              <div class="content__right--header--text"><i class="fas fa-angle-right content__right--header--icon" [ngClass]="expand[0] ? 'content__right--header--icon--rotate' : ''" style="margin-right: 1rem;" (click)="expand[0] && collapse($event, 0)"></i>Notes to patient</div>
+              <app-multiselect-dropdown *ngIf="expand[0]" [placeholder]="'Favorite notes:'" [data]="dropdownListSingle" [settings]="dropdownSettingsSingle" [dropdownStyle]="{lineHeight: 1.2, minWidth: '15.2rem'}"></app-multiselect-dropdown>
+              <i *ngIf="!expand[0] && isCkEditorDirty()" class="fas fa-check content__pane--check-mark"></i>
+            </div>
+            <div *ngIf="expand[0]" class="content__pane__inner content__body">
+              <ng-scrollbar [autoHide]="true">
+                <ckeditor [editor]="Editor" [(ngModel)]="editorModel.editorData" (ready)="onReady($event)" class="document-editor"></ckeditor>
+              </ng-scrollbar>
+              <div class="content__pane--footer">
+                <app-button-standard [label]="'SAVE TO FAVORITE'" [buttonStyle]="{padding: '1.15rem'}" appToast [toastMessage]="'Note Saved to Favorite'" appRipple></app-button-standard>
+              </div>
+            </div>
+          </div>
+          <div class="content__pane" [ngClass]="expand[1] ? 'item' : ''">
+            <div class="content__right--header" [ngClass]="expand[1] ? '' : 'content__right--header--collapse'" (click)="!expand[1] && switchExpand(1)">
+              <div class="content__right--header--text"><i class="fas fa-angle-right content__right--header--icon" [ngClass]="expand[1] ? 'content__right--header--icon--rotate' : ''" style="margin-right: 1rem;" (click)="expand[1] && collapse($event, 1)"></i>Lifestyle Recommendation</div> 
+              <app-icon-notification *ngIf="expand[1] || checkdRecommend !== 0" [iconClass]="'fas fa-shopping-basket'" [value]="checkdRecommend"></app-icon-notification>    
+            </div>
+            <div *ngIf="expand[1]" class="recommendation">
+              <div class="bg-video">
+                  <video class="bg-video__content" autoplay muted loop>
+                    <source src="../../../assets/videos/waves.mp4" type="video/mp4">
+                  </video>
+              </div>
+              <ng-scrollbar [autoHide]="true">
+                <div class="recommendation__card" *ngFor="let recommendation of recommendations index as i">
+                  <div class="recommendation__card--left">
+                    <h3>{{ recommendation.title }}</h3>
+                    {{ recommendation.description }}
+                  </div>
+                  <div class="recommendation__card--right">
+                    <i *ngIf="!recommendation.checked" class="fas fa-plus-circle recommendation__card--right-icon" (click)=toggleRecommend(i)></i>
+                    <i *ngIf="recommendation.checked" class="fas fa-check-square recommendation__card--right-icon--checked" (click)=toggleRecommend(i)></i>
+                  </div>
+                </div>
+              </ng-scrollbar>
+            </div>
+          </div>
+          <div class="content__pane drag-drop-drag-area" [ngClass]="expand[2] ? 'item' : ''">
+            <div class="content__right--header" [ngClass]="expand[2] ? '' : 'content__right--header--collapse'" (click)="!expand[2] && switchExpand(2)">
+              <div class="content__right--header--text"><i class="fas fa-angle-right content__right--header--icon" [ngClass]="expand[2] ? 'content__right--header--icon--rotate' : ''" style="margin-right: 1rem;" (click)="expand[2] && collapse($event, 2)"></i>Foods to avoid</div>
+              <i *ngIf="!expand[2] && draggedFoods && draggedFoods.length > 0" class="fas fa-check content__pane--check-mark"></i>          
+            </div>
+            <div *ngIf="expand[2]" class="content__body drag-drop-container">
+              <div class="drag-drop-container__drop-area" appDropzone (dropped)="addFoodToAvoid($event)">
+                <span *ngIf="!draggedFoods || draggedFoods.length == 0" class="drag-drop-container__drop-area--noData-msg">drag the foods from below</span>
+                <div *ngFor="let food of draggedFoods index as i" class="drag-drop-container__drop-area--chip" appRipple [rippleColor]="'#686566'">
+                    <span class="drag-drop-container__drop-area--chip--text">{{ food.name }}</span>
+                  <div class="drag-drop-container__drop-area--chip--close" (click)="removeFoodFromAvoid(food, i)"></div>
+                </div>
+              </div>
+              <div class="drag-drop-container__drag-area">
+                <ng-scrollbar [autoHide]="true">
+                  <div *ngFor="let foodsList of foodsToBeAvoid index as i" class="drag-area-pane">
+                    <div class="drag-area-pane__category">{{ foodsList.category }}:</div>
+                    <div class="drag-area-pane--inner" appMovableArea>
+                      <div *ngFor="let food of foodsList.foods | slice: 0: viewableLength[i] index as j" class="drag-area-pane__panel" appDroppable (dragStart)="onDragStart($event, i, j)">
+                        {{ food }}
+                        <div class="drag-area-pane__panel--dragged" *appDraggableHelper>{{ food }}</div>
+                      </div>
+                      <div class="drag-area-pane__load-more"><app-button-arrow *ngIf="foodsList.foods.length > viewableLength[i]" [label]="'Load more'" (click)="loadMore(i)"></app-button-arrow></div>
+                    </div>
+                  </div>
+                </ng-scrollbar>
+              </div>
+            </div>
+          </div>
+          <div class="content__pane" [ngClass]="expand[3] ? 'item' : ''">
+            <div class="content__right--header" [ngClass]="expand[3] ? '' : 'content__right--header--collapse'" (click)="!expand[3] && switchExpand(3)">
+              <div class="content__right--header--text"><i class="fas fa-angle-right content__right--header--icon" [ngClass]="expand[3] ? 'content__right--header--icon--rotate' : ''" style="margin-right: 1rem;" (click)="expand[3] && collapse($event, 3)"></i>Foods to rotate</div>
+              <div *ngIf="expand[3]" class="food-rotate-container__operation" (click)="resetRotate()">Reset</div>
+              <i *ngIf="!expand[3] && rotateDirty" class="fas fa-check content__pane--check-mark"></i>      
+            </div>
+            <div *ngIf="expand[3]" class="content__pane__inner">
+              <div class="food-rotate-container">
+                <div class="food-rotate-container__header">
+                  <div class="food-rotate-text food-rotate-text--highlight">Food</div>
+                  <div *ngFor="let idx of [1, 2, 3, 4, 5]" class="food-rotate-text">W{{ idx }}</div>
+                </div>
+                <div class="food-rotate-container__content">
+                  <ng-scrollbar [autoHide]="true">
+                    <div *ngFor="let food of foodsToRotate index as i" class="food-rotate-container__content--row">
+                      <div class="food-rotate-container__content--header">{{ food.name }}</div>
+                      <div *ngFor="let rotate of food.rotates index as j" class="food-rotate-container__content--cell">
+                          <div class="checkbox">
+                            <input type="checkbox" [checked]="rotate" [value]="rotate" >
+                            <label class="checkbox__label" (click)="toggleCheck(i, j)">
+                              <span class="checkbox__checkmark"></span>
+                            </label>
+                          </div>
+                      </div>
+                    </div>
+                  </ng-scrollbar>
+                </div>
+              </div>
+              <div class="food-rotate-footer">
+                <div class="food-rotate-footer__content">Rotate:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="checkbox">
+                        <input type="checkbox" [checked]="true" [value]="rotate" >
+                        <label class="checkbox__label">
+                          <span class="checkbox__checkmark"></span>
+                        </label>
+                      </div>
+                </div>
+                <div class="food-rotate-footer__content">Not Rotate:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="checkbox">
+                        <input type="checkbox" [checked]="false" [value]="rotate" >
+                        <label class="checkbox__label">
+                          <span class="checkbox__checkmark"></span>
+                        </label>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content__right item">
+          <div class="content__right--header content__right--header--no-shadow">
+            <div class="content__right--header--text">Protocol Summary</div>
+            <app-input-field class="content__header--search" [inputFieldClass]="'input__field--grey'" [placeholder]="'Quick add protocols'"></app-input-field>
+          </div>
+          <div *ngIf="!protocols || protocols.length === 0"class="content__right--content--empty">
+              <div class="header__button header__button--green">Add your first products</div>
+          </div>
+          <div class="content__right--content">
+            <ng-scrollbar [autoHide]="true">
+              <div *ngFor="let protocol of protocols index as i" class="protocol-pane" [@enterAnimation]>
+                <div class="protocol-pane__header">{{ protocols[i].name }}&nbsp;({{ protocols[i].product.length }})<div class="protocol-pane__header--icon" (click)="removeProtocol(i)"></div></div>
+                <div class="protocol-pane__content">
+                  <div class="protocol-pane__content--title"><div>item</div><div>dosage<span class="protocol-pane__content--title--text">(using suppliers instructions)</span></div><div style="justify-self: center">qty</div><div style="justify-self: center">price</div></div>
+                  <div *ngFor="let product of protocol.product index as j" class="protocol-pane__content--item" [@enterAnimation]>
+                    <div *ngIf="!product.imgUrl" class="product-image-placeholder"><div class="product-image-placeholder__dotted-border"><div></div><i class="fas fa-plus product-image-placeholder__dotted-border--icon" (click)="addProductFromCategory(i, j)"></i>Add your brand<div></div></div></div>
+                    <div *ngIf="product.imgUrl" class="product-image-container">
+                      <div class="product-image" [ngStyle]="{backgroundImage: 'url(../../../assets/supplements/' + product.imgUrl + '.png)'}"></div>
+                      <div class="product-image--title">{{ product.title }}</div>
+                      <div class="product-image--text">{{ product.text }}</div>
+                      <div class="product-image--price"><span class="full-price" style="margin-right: .5rem">$72.3</span>${{ product.price }}</div>
+                    </div>
+                    <div class="protocol-pane__content--item--operation">
+                      <div class="protocol-content-dropdown">
+                        <app-dropdown-button-float [items]="capsuleAmountList" [dropdownClass]="'dropdown-float-bordered'" [selected]="capsuleAmountList[0].displayName"></app-dropdown-button-float>
+                        <div class="protocol-content-dropdown__capsule">capsules</div>
+                        <app-dropdown-button-float [items]="frequencyList" [dropdownClass]="'dropdown-float-bordered'" [selected]="product.frequency"></app-dropdown-button-float>
+                      </div>
+                      <div class="protocol-content-duration">
+                          <app-dropdown-button-float [items]="durationList" [dropdownClass]="'dropdown-float-bordered'" [selected]="product.duration"></app-dropdown-button-float>
+                          <div class="protocol-content-duration__supply">{{ product.supply }}</div>
+                      </div>
+                      <div class="protocol-content-instruction">Additional Instructions:</div>
+                      <app-textarea [row]="4" [maxLength]="255" [textareaClass]="'textarea-bordered'"></app-textarea>
+                      <div class="protocol-content-save"><i class="fas fa-arrow-alt-circle-down" style="margin-right: .5rem"></i>save as default</div>
+                    </div>
+                    <div class="protocol-pane__content--item--quality"><app-dropdown-button-float [items]="quantityList" [dropdownClass]="'dropdown-float-bordered dropdown-float-bordered--green'" [selected]="product.quantity" (onSelect)="updateQuantity($event, i, j)"></app-dropdown-button-float></div>
+                    <div class="protocol-pane__content--item--price">
+                      <ng-container *ngIf="!product.price">N/A</ng-container><ng-container *ngIf="product.price">${{ product.quantity * product.price | number:'1.2-2' }}</ng-container>
+                      <div class="protocol-pane__content--item--price__remove"><span class="protocol-pane__content--item--price__remove--text" (click)="removeProduct(i, j)">Remove</span></div>
+                    </div>
+                  </div>
+                  <div class="protocol-pane__content--footer">
+                    <div class="header__buttons--button" (click)="addProduct(i)"><i class="icon ion-md-add header__buttons--icon"></i>Add more products</div>
+                  </div>
+                </div>
+              </div>
+              <div class="protocol-summary" *ngIf="protocols && protocols.length > 0">
+                <div class="protocol-summary__title">Order summary for {{ protocols.length }} protocols:</div>
+                <div class="protocol-summary__price">Protocol Total: ${{ totalPrice | number:'1.2-2' }}</div>
+                <div class="protocol-summary__info">Taxes and shopping will be calculated when your client is checking out.</div>
+              </div>
+            </ng-scrollbar>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </ng-scrollbar>
+
+
+
+
+
+  <app-modal #selectProductModal identifier="selectProductModal">
+    <div class="product-modal-container" appSetDimensionByViewport><app-product-home></app-product-home></div>
+  </app-modal>

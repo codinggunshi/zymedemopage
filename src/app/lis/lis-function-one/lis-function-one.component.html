@@ -1,0 +1,9 @@
+<div class="container">
+  <app-sidenav *ngIf="items" [items]="items" class="sidenav"></app-sidenav>
+  <app-header-menu class="header"></app-header-menu>
+  <div class="content">
+    <router-outlet (activate)="componentAdded($event)"></router-outlet>
+  </div>
+</div>
+
+<!--<app-float-nav [items]="floatNavItems"></app-float-nav>-->

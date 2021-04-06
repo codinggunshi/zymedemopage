@@ -1,0 +1,8 @@
+<div class="alert" [ngClass]="[type, showAlert ? 'alert__show' : '']">
+  <span class="alert__info">{{ type }}!</span>
+  <p class="alert__msg">{{ msg }}</p>
+  <button type="button" class="alert__btn-close" (click)="close()">
+    <div class="alert__img-close"></div>
+    close
+  </button>
+</div>

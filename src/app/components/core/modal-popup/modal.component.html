@@ -1,0 +1,11 @@
+<div *ngIf="overlayVisible" [style.z-index]="visible ? layerPosition-1 : -1" [ngClass]="{'transparent':!backdrop, 'overlay':true, 'nsm-overlay-open':openedClass}"
+    (click)="dismiss($event)" #overlayDiv> <!-- overlay -->
+    <div [style.z-index]="visible ? layerPosition : -1" [ngClass]="['nsm-dialog', customClass, openedClass ? 'nsm-dialog-open': 'nsm-dialog-close']" #dialogDiv> <!-- modal -->
+        <div class="nsm-content" #contentDiv> <!-- content -->
+            <div class="nsm-body">
+                <ng-content></ng-content>
+            </div>           
+            <i type="button" *ngIf="closable" (click)="close()" aria-label="Close" class="icon ion-md-close dialog-btn-close"></i>
+        </div>
+    </div>
+</div>

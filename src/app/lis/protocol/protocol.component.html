@@ -1,0 +1,53 @@
+<div class="protocol-container">
+  <div class="header">
+    <div class="header--text u-margin-button">Your Protocols</div>
+    <div class="header--search">
+      <app-input-box [showLabel]="false" [inputBoxClass]="'bordered-primary-transparent'" [placeholder]="'Search for a product, brand or condition'"></app-input-box>
+      <div class="header--right-bar">
+        <i class="fas fa-search header--icon"></i>
+      </div>
+    </div>
+    <div class="header__button">Manage your clients</div>
+    <div class="header__panel">
+      <app-button-standard [label]="'All'" [buttonClass]="filter === 'All' ? 'btn-green' : 'btn-bordered-green'" [buttonStyle]="filter === 'All' ? {padding: '.9rem 3.2rem', fontWeight: 'bold'} : {padding: '.7rem 3rem', fontWeight: 'bold'}" (click)="changeFilter('All')"></app-button-standard> <!-- add 2px to compensate the 2px border -->
+      <app-button-standard [label]="'Draft'" [buttonClass]="filter === 'Draft' ? 'btn-green' : 'btn-bordered-green'" [buttonStyle]="filter === 'Draft' ? {padding: '.9rem 3.2rem', fontWeight: 'bold'} : {padding: '.7rem 3rem', fontWeight: 'bold'}" (click)="changeFilter('Draft')"></app-button-standard>
+      <app-button-standard [label]="'Active'" [buttonClass]="filter === 'Active' ? 'btn-green' : 'btn-bordered-green'" [buttonStyle]="filter === 'Active' ? {padding: '.9rem 3.2rem', fontWeight: 'bold'} : {padding: '.7rem 3rem', fontWeight: 'bold'}" (click)="changeFilter('Active')"></app-button-standard>
+      <app-button-standard [label]="'Cancelled'" [buttonClass]="filter === 'Cancelled' ? 'btn-green' : 'btn-bordered-green'" [buttonStyle]="filter === 'Cancelled' ? {padding: '.9rem 3.2rem', fontWeight: 'bold'} : {padding: '.7rem 3rem', fontWeight: 'bold'}" (click)="changeFilter('Cancelled')"></app-button-standard>
+      <app-button-standard [label]="'Favorite'" [buttonClass]="filter === 'Favorite' ? 'btn-green' : 'btn-bordered-green'" [buttonStyle]="filter === 'Favorite' ? {padding: '.9rem 3.2rem', fontWeight: 'bold'} : {padding: '.7rem 3rem', fontWeight: 'bold'}" (click)="changeFilter('Favorite')"></app-button-standard>
+    </div>
+  </div>
+  <div class="content">
+      <div class="content__header">
+          <div class="cell cell__header"><app-check-box [checkboxClass]="'checkbox-gray'" [scale]="'.6'" (click)="toggleCheckAll()" [checked]="checkAll" [indeterminate]="checkallIndeterminate"></app-check-box></div>
+          <div class="cell cell__header">Date Created</div>
+          <div class="cell cell__header">Status</div>
+          <div class="cell cell__header">Name of Protocol</div>
+          <div class="cell cell__header cell__header--group">Actions</div>
+        </div>
+
+        <div class="content__body">
+            <div *ngFor="let data of summaryData | slice:10*activePage:10*(activePage+1) index as i" class="content__row">
+              <div class="cell"><app-check-box [checkboxClass]="'checkbox-gray'" [scale]="'.6'" (click)="toggleCheck(i)" [checked]="data.checked"></app-check-box></div>
+              <div class="cell" [ngClass]="data.status === 'Cancelled' ? 'cell__date-created' : ''">{{ data.dateCreated }}</div>
+              <div class="cell">
+                <span class="cell__status" [ngClass]="{'cell__status--active' : data.status === 'Active', 'cell__status--draft' : data.status === 'Draft', 'cell__status--cancelled' : data.status === 'Cancelled'}" appRipple>{{ data.status }}</span>
+              </div>
+              <div class="cell"><span class="cell__protocol">{{ data.nameOfProtocol }}</span></div>
+              <div class="cell cell__assign"><i class="far fa-edit cell__assign-icon"></i><span class="cell__assign-text">Assign to new client</span></div>
+              <div class="cell cell__assign"><i class="fas fa-users cell__assign-icon"></i><span class="cell__assign-text">Assigned clients</span></div>
+            </div>
+          </div>
+  </div>
+
+  <div class="footer">
+      <div class="footer__pager">
+        <div class="footer__pager--circle" (click)="goToFirstPage()"><i class="fas fa-angle-double-left"></i></div>
+        <div class="footer__pager--circle" (click)="goToPreviousPage()"><i class="fas fa-angle-left"></i></div>
+        <div *ngIf="activePage >= 2 && activePage !== pagesInfo.length - 1 || activePage > 2 && activePage === pagesInfo.length - 1">...</div>
+        <div *ngFor="let page of pagesInfo index as i" class="footer__pager--number" [ngClass]="page.active ? 'footer__pager--number--active' : ''" [hidden]="(activePage !== 0 && activePage !== pagesInfo.length - 1) ? i > activePage + 1 || activePage -1 > i : i > activePage + 2 || activePage -2 > i" (click)="activatePageByIdx(i)"><span>{{ i+1 }}</span></div>
+        <div *ngIf="pagesInfo.length - 1 > activePage + 1 && activePage !== 0 || pagesInfo.length - 1 > activePage + 2 && activePage === 0">...</div>
+        <div class="footer__pager--circle" (click)="goToNextPage()"><i class="fas fa-angle-right"></i></div>
+        <div class="footer__pager--circle" (click)="goToLastPage()"><i class="fas fa-angle-double-right"></i></div>
+      </div>
+    </div>
+</div>

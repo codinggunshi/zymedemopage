@@ -1,0 +1,23 @@
+<app-card>
+  <div class="preview-container" fileDrop (fileOver)="fileOverBase($event)" [uploader]="uploader" #previewContainer>
+      <i class="icon ion-md-add preview-item__add" (click)="triggerUploadButtonClick()"></i>
+      <div *ngIf="uploader.queue.length !== 0" class="preview-item__upload">
+        <app-button-flat [label]="'Upload All'" [buttonClass]="'btn-flat-primary'" (click)="upload()"></app-button-flat>
+      </div>
+      <input type="file" fileSelect [uploader]="uploader" multiple  style="display: none; position: absolute; top: 0; right: 0;" #uploadButton/>
+      <div class="preview-header"></div>
+      <div class="preview-item" *ngFor="let item of uploader.queue; let i = index">
+          <div class="preview-img-container">
+              <i class="icon ion-md-close-circle preview-item__delete" (click)="removeFromUpload(i)"></i>
+              <img class="preview-img" src="../../../assets/images/file-type/{{item.file.name.slice(item.file.name.lastIndexOf('.') + 1).toLowerCase()}}.png"
+                   (error)="updateSrc($event)" alt="">
+              <div class="preview-img__overlay">{{ item.file.size/1024/1024 | number:'.2' }} MB</div>
+              <div class="preview-text">{{ item.file.name.length > 15 ? item.file.name.substring(0, 12)+'...' : item.file.name }}</div>
+          </div>
+      </div>
+      <div *ngIf="uploader.queue.length === 0" class="preview-upload-info">
+          <i class="icon ion-md-cloud-upload preview-upload-info__cloud"></i>
+          <div class="preview-upload-info__text">Drag & Drop your files</div>
+      </div>
+  </div>
+</app-card>

@@ -1,0 +1,125 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+
+.dropdown {
+    position: relative;
+    width: 100%;
+  
+    &__icon {
+      position: absolute;
+      top: -1rem;
+      right: .8rem;
+      font-size: 2.4rem;
+      cursor: pointer;
+    }
+  
+    &__menu {
+      box-shadow: $shadow-container;
+      position: absolute;
+      top: -1.5rem;
+      left: 0;
+      right: 0;
+      margin: 1rem 0;
+      padding: 1.5rem 0;
+      list-style: none;
+      text-align: left;
+      border-radius: 3px;
+      background: $color-white;
+      -webkit-transition: all .3s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: all .3s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: scale(0);
+      transform-origin: right top;
+      z-index: $z-index-dropdown;
+  
+      &__icon {
+        position: absolute;
+        top: -.8rem;
+        right: .8rem;
+        font-size: 2.4rem;
+        cursor: pointer;
+      }
+  
+      li {
+        display: block;
+        padding: 0 1em;
+        position: relative;
+        line-height: 2.35em;
+        background-color: $color-white;
+        opacity: 0;
+        cursor: pointer;
+        transition: all 0.3s;
+  
+        &:hover {
+          background-color: $color-hover;
+        }
+
+        &:first-of-type {
+          margin-top: .8rem;
+        }
+      }
+  
+      &.open {
+        transform: scale(1);
+  
+        li {
+          opacity: 1;
+        }
+      }
+    }
+  
+    &__input {
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
+      border: none;
+      background: transparent;
+      border-bottom: 2px solid $color-primary;
+      outline: none;
+      display: block;
+      padding-left: .5rem;
+      padding-bottom: .5rem;
+      width: 100%;
+      cursor: pointer;
+      -webkit-transition: all .5s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: all .5s cubic-bezier(0.19, 1, 0.22, 1);
+      opacity: 1;
+  
+      &.open {
+        opacity: 0;
+      }
+    }
+  }
+
+  .dropdown__input.dropdown-float-bordered {
+    border: 1px solid rgba($color-primary, .5);
+    padding: .4rem 0 .4rem .5rem;
+
+    & + .dropdown__icon {
+      top: -.7rem;
+    }
+  }
+
+  .dropdown__input.dropdown-float-bordered.dropdown-float-bordered--green {
+    border: 1px solid $color-green;
+  }
+
+  .dropdown__input.dropdown-green {
+    border-bottom: 2px solid $color-green;
+  }
+  
+  .open li:nth-child(1) {
+    transition-delay: 0.07s;
+  }
+  .open li:nth-child(2) {
+    transition-delay: 0.14s;
+  }
+  .open li:nth-child(3) {
+    transition-delay: 0.21s;
+  }
+  .open li:nth-child(4) {
+    transition-delay: 0.28s;
+  }
+  .open li:nth-child(5) {
+    transition-delay: 0.35s;
+  }
+  

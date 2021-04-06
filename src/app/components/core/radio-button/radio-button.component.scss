@@ -1,0 +1,54 @@
+@import "../../../_scss/abstracts/variables.scss";
+@import "../../../_scss/abstracts/mixins.scss";
+
+.radio {
+    display: inline-block;
+
+    &__input {
+        display: none;
+    }
+
+    input:checked ~ &__label &__button::after {
+        opacity: 1;
+    }
+
+    &__label {
+        cursor: pointer;
+        position: relative;
+        padding-left: 4rem;
+    }
+    
+    &__button {
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-text;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: -.4rem;
+    
+        &::after {
+            content: "";
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            @include absCenter;
+            background-color: $color-text;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+    }
+}
+
+
+/******* for primary color checkbox ******/
+.radio__button.radio-primary {
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+
+    &::after {
+        background-color: $color-primary;
+    }
+}

@@ -1,0 +1,88 @@
+<div *ngIf="showNavIcon" class="navigation" [@navIconAnimation]="navState" (click)="toggleNav($event)" #navigationDiv>
+    <input type="checkbox" class="navigation__checkbox" [checked]="navChecked">
+    <label class="navigation__button">
+        <span class="navigation__icon">&nbsp;</span>
+    </label>
+</div>
+
+<div class="sidenav__container" [@navAnimation]="navState" #sidenavDiv>
+
+    <ng-scrollbar *ngIf="!isSlimSidenav" [autoHide]="true">
+        <div class="flexbox-container">
+            <div *ngIf="showNavHeader" class="sidenav__header">
+                <img class="sidenav__header-img" src="../../../../assets/logos/zyme-logo.png" alt="Vibrant">
+            </div>
+
+            <div class="sidenav__title">MENU</div>
+
+            <ul class="sidenav__menu">
+                <li *ngFor="let item of items index as i" class="sidenav__menu--main" [ngClass]="[item.items ? 'has-sub' : '', item.open ? 'open' : '']">
+                    <a [routerLink]="item.url" (click)="toggleExpand(item)" [ngClass]="!item.items && selectedItem === item.label ? 'active' : ''">
+                        <span class="label">
+                            <i [ngClass]="item.icon" class="sidenav__icon"></i>{{ item.label }}
+                            <i *ngIf="item.items" class="icon ion-md-arrow-dropdown dropdown-icon" [ngClass]="item.open ? 'dropdown-icon-animate' : ''"></i>
+                            <span *ngIf="showBadge && item.items" class="badge">{{ item.items.length }}</span>
+                        </span>
+                    </a>
+                    <ul *ngIf="item.items && item.open" [@enterAnimation]>
+                        <li *ngFor="let item of item.items index as j" class="sidenav__menu--sub" [ngClass]="[item.items ? 'has-sub' : '', item.open ? 'open' : '']">
+                            <a [routerLink]="item.url" (click)="toggleExpand(item)" [ngClass]="!item.items && selectedItem === item.label ? 'active' : ''">
+                                <span class="label">
+                                    {{ item.label }}
+                                    <i *ngIf="item.items" class="icon ion-md-arrow-dropdown dropdown-icon dropdown-icon--sub" [ngClass]="item.open ? 'dropdown-icon-animate' : ''"></i>
+                                    <span *ngIf="showBadge && item.items" class="badge badge--sub">{{ item.items.length }}</span>
+                                </span>
+                            </a>
+                            <ul *ngIf="item.items && item.open" [@enterAnimation]>
+                                <li *ngFor="let item of item.items index as k" class="sidenav__menu--sub-sub">
+                                    <a [routerLink]="item.url" (click)="toggleExpand(item)" [ngClass]="selectedItem === item.label ? 'active' : ''">
+                                        <span>{{ item.label }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="sidenav__footer">
+                <div class="sidenav__footer--left"></div>
+                <div class="sidenav__footer--right" (click)="toggleSlimMenu($event)"><i class="fas fa-angle-left sidenav__footer--icon"></i></div>
+            </div>
+        </div>
+    </ng-scrollbar>
+
+    <div [hidden]="!isSlimSidenav" class="flexbox-container">
+        <div *ngIf="showNavHeader" class="sidenav__header">
+            <img class="sidenav__header-img" src="../../../../assets/logos/zyme-log-3.png" alt="Vibrant">
+        </div>
+        <ul class="sidenav__menu">
+            <li *ngFor="let item of items index as i" (mouseenter)="slimToggleHover(item)" (mouseleave)="slimToggleHover(item)" class="sidenav__menu--main slim__menu--main" [ngClass]="[item.items ? 'has-sub' : '', item.open ? 'open' : '']">
+                <a (click)="slimToggleExpand(item, null)" [ngClass]="(!item.items && selectedItem === item.label) || selectedRoot === item.label ? 'active' : ''">
+                    <span class="label">
+                        <i [ngClass]="item.icon" class="sidenav__icon"></i>
+                    </span>
+                </a>
+                <ul *ngIf="item.items && item.open" class="ul-slim">
+                    <li *ngFor="let sub of item.items index as j" class="sidenav__menu--sub slim__menu--sub" [ngClass]="[sub.items ? 'has-sub' : '', sub.open ? 'open' : '']">
+                        <a (click)="slimToggleExpand(sub, item)" [ngClass]="!sub.items && selectedItem === sub.label ? 'active' : ''">
+                            <span class="label">{{ sub.label }}</span>
+                            <i *ngIf="sub.items" class="icon ion-md-arrow-dropdown dropdown-icon dropdown-icon--sub" [ngClass]="sub.open ? 'dropdown-icon-animate' : ''"></i>
+                            <span *ngIf="showBadge && sub.items" class="badge badge--sub">{{ sub.items.length }}</span>
+                        </a>
+                        <ul *ngIf="sub.items && sub.open" [@enterAnimation] class="ul-slim--sub">
+                            <li *ngFor="let sub2 of sub.items index as k" class="sidenav__menu--sub-sub">
+                                <a (click)="slimToggleExpand(sub2, item)" [ngClass]="selectedItem === sub2.label ? 'active' : ''">
+                                    <span>{{ sub2.label }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="sidenav__footer">
+            <div class="sidenav__footer--left"></div>
+            <div class="sidenav__footer--right" (click)="toggleSlimMenu($event)"><i class="fas fa-angle-right sidenav__footer--icon"></i></div>
+        </div>
+    </div>
+</div>

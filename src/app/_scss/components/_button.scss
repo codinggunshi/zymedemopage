@@ -1,0 +1,88 @@
+/*.btn-3d {
+    padding: .5rem 1.5rem;
+    text-decoration: none;
+    background: transparent;
+    border: .2rem solid $color-primary;
+    color: $color-primary;
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    @include prefix(border-radius, .5rem);
+    @include prefix(transition, background .3s ease);
+    @include prefix(box-shadow, .2rem .2rem 0 lighten($color-primary, 10%));
+
+    &:hover {
+        box-shadow: none;
+        top: 2px;
+        left: 2px;
+        @include prefix(box-shadow, 2px 2px 0 transparent);
+    }
+}
+
+
+
+.button_base {
+    position: relative;
+    width: 10rem;
+    height: 4rem;
+    background-color: $color-white;
+}
+
+.button_base:hover {
+    cursor: pointer;
+}
+
+.btn-skewed-slide-in {
+    overflow: hidden;
+    border: $color-primary solid 1px;
+}
+
+.btn-skewed-slide-in div {
+    position: absolute;
+    white-space:nowrap;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-skewed-slide-in div:nth-child(1) {
+    color: $color-primary;
+}
+
+.btn-skewed-slide-in div:nth-child(2) {
+    background-color: $color-primary;
+    width: 200%;
+    height: 200%;
+    top: 0;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transform: translate(-30rem, 0) skewX(-30deg);
+    -webkit-transform: translate(-30rem, 0) skewX(-30deg);
+    -moz-transform: translate(-30rem, 0) skewX(-30deg);
+}
+
+.btn-skewed-slide-in div:nth-child(3) {
+    color: $color-white;
+    left: -20rem;
+    transition: left .3s ease;
+    -webkit-transition: left .3s ease;
+    -moz-transition: left .3s ease;
+}
+
+.btn-skewed-slide-in:hover div:nth-child(2) {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transform: translate(-10rem, 0) skewX(-30deg);
+    -webkit-transform: translate(-10rem, 0) skewX(-30deg);
+    -moz-transform: translate(-10rem, 0) skewX(-30deg);
+}
+
+.btn-skewed-slide-in:hover div:nth-child(3) {
+    left: 50%;
+    transition: left .3s ease;
+    -webkit-transition: left .3s ease;
+    -moz-transition: left .3s ease;
+}*/

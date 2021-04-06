@@ -1,0 +1,52 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.info-msg,
+.success-msg,
+.warning-msg,
+.error-msg {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: .3rem;
+}
+
+.info-msg {
+  color: $color-info;
+  background-color: $color-info-bg;
+}
+
+.success-msg {
+  color: $color-success;
+  background-color: $color-success-bg;
+}
+
+.warning-msg {
+  color: $color-warn;
+  background-color: $color-warn-bg;
+}
+
+.error-msg {
+  color: $color-error;
+  background-color: $color-error-bg;
+}
+
+.alert-close-btn {
+  cursor: pointer;
+  float: right;
+}
+
+.alert-close {
+  animation: remove-animation 500ms ease forwards;
+}
+
+@keyframes remove-animation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+  }
+}

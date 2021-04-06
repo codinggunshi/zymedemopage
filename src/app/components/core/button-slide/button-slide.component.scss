@@ -1,0 +1,53 @@
+@import "../../../_scss/abstracts/variables.scss";
+@import "../../../_scss/abstracts/mixins.scss";
+
+
+.btn_base {
+    position: relative;
+    width: 10rem;
+    height: 4rem;
+    background-color: $color-white;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.btn-slide-in {
+    overflow: hidden;
+    border: $color-primary solid 1px;
+
+    div {
+        white-space:nowrap;
+        @include absCenter;
+    }
+    
+    div:nth-child(1) {
+        color: $color-primary;
+    }
+    
+    div:nth-child(2) {
+        background-color: $color-primary;
+        width: 200%;
+        height: 200%;
+        top: 0;
+        transform: translate(-30rem, 0) skewX(-30deg);
+        transition: all .3s ease;
+    }
+    
+    :nth-child(3) {
+        color: $color-white;
+        left: -20rem;
+        transition: left .3s ease;
+    }
+    
+    &:hover div:nth-child(2) {
+        transform: translate(-10rem, 0) skewX(-30deg);
+        transition: all 0.5s ease;
+    }
+    
+    &:hover div:nth-child(3) {
+        left: 50%;
+        transition: left .3s ease;
+    }
+}

@@ -1,0 +1,29 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.btn-arrow {
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid rgba($color-primary, .8);
+    padding: .3rem;
+    cursor: pointer;
+    transition: all .2s;
+
+    & span {
+        margin-left: .3rem;
+        transition: margin-left .2s;
+    }
+
+    &:hover {
+        color: $color-primary;
+
+        span {
+            margin-left: .8rem;
+        }
+    }
+
+    &:focus {
+        outline: none;
+        animation: pulsate 1s infinite;
+    }
+}

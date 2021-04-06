@@ -1,0 +1,148 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+$color-overlay: rgba(0, 0, 0, .5);
+$dialog-position-top: 1.75rem !default;
+$transition-duration: .5s;
+$transition-timing-function: ease-in-out;
+
+// Close button in modal
+.dialog-btn-close {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  font-size: 3.6rem;
+  cursor: pointer;
+}
+
+// Overlay
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: background-color $transition-duration;
+  background-color: transparent;
+  z-index: $z-index-highest;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.nsm-overlay-open {
+    background-color: $color-overlay;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+
+    & > .nsm-dialog {
+      transform: scale(1);
+    }
+  }
+
+  &.transparent {
+    background-color: transparent;
+  }
+}
+
+// Dialog modal
+.nsm-dialog {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+
+  transform: scale(.25);
+  transition: all .3s;
+
+  &.nsm-dialog-close {
+    opacity: 0;
+  }
+
+  &.nsm-centered {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nsm-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background-clip: padding-box;
+  background-color: $color-white;
+  border-radius: $border-radius;
+  padding: 1rem;
+  margin: $dialog-position-top;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, .2), 0 13px 19px 2px rgba(0, 0, 0, .14), 0 5px 24px 4px rgba(0, 0, 0, .12);
+  outline: none;
+
+  transform: translate3d(0, 0, 0);
+}
+
+.nsm-body {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+/* *************************
+* Animations
+* *************************/
+
+.nsm-dialog[class*=nsm-dialog-animation-] {
+  transition: transform $transition-duration $transition-timing-function, opacity $transition-duration;
+}
+
+// Left to right (ltr)
+.nsm-dialog-animation-ltr {
+  transform: translate3d(-50%, 0, 0);
+
+  &.nsm-dialog-open {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.nsm-dialog-close {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+// Right to left (ltr)
+.nsm-dialog-animation-rtl {
+  transform: translate3d(50%, 0, 0);
+
+  &.nsm-dialog-open {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.nsm-dialog-close {
+    transform: translate3d(50%, 0, 0);
+  }
+}
+
+// Top to bottom (ttb)
+.nsm-dialog-animation-ttb {
+  transform: translate3d(0, -50%, 0);
+
+  &.nsm-dialog-open {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.nsm-dialog-close {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+// Bottom to top (btt)
+.nsm-dialog-animation-btt {
+  transform: translate3d(0, 50%, 0);
+
+  &.nsm-dialog-open {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.nsm-dialog-close {
+    transform: translate3d(0, 50%, 0);
+  }
+}

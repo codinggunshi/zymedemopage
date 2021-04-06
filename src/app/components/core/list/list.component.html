@@ -1,0 +1,19 @@
+<div class="list" [ngClass]="dropdownClass" [ngStyle]="dropdownStyle">
+  <div *ngIf="hasHeader" class="list__header">
+    <div style="padding-left: 1rem"></div>
+    <div><b>{{ title }}</b></div>
+  </div>
+  <div class="list__content">
+      <ul [style.maxHeight]="maxHeight + 'rem'" [style.height]="3.9 * items.length > maxHeight ? maxHeight + 'rem' : 3.9 * items.length + 'rem'">
+        <ng-scrollbar [autoHide]="true">
+        <li *ngFor="let item of items" class="list__item" (click)="onItemClick($event, item)">
+          <div class=list__item-content>
+            <app-check-box *ngIf="showCheckbox" [scale]="'0.5'"></app-check-box>
+            <div *ngIf="showCheckbox" style="margin-right: 1rem"></div>
+            <div>{{ item.label }}</div>
+          </div>
+        </li>
+        </ng-scrollbar>
+      </ul>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="header">
+    <div class="header__search">
+      <app-input-box [inputBoxClass]="'bordered-transparent'" [searchDropdown]="true" [placeholder]="'SEARCH CLIENT'" [items]="items"></app-input-box>
+      <div class="header__search--right-bar">
+          <i class="icon ion-md-search header__search--icon"></i>
+      </div>
+    </div>
+    <div class="header__button" appRipple><app-button-standard [label]="'NEW PROTOCOL'" [buttonStyle]="{padding: '1.15rem'}" [routerLink]="'new-protocol'"></app-button-standard></div>
+    <div class="header__user">
+      <div class="header__user--title">{{ user.name }} </div>
+      <div class="header__user--spec">{{ user.description }}</div>
+    </div>
+    <div class="header__image">
+        <img src="../../../assets/logos/zyme-log-3.png" alt="User" class="header__image--photo">
+    </div>
+</div>

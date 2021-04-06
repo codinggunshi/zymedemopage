@@ -1,0 +1,106 @@
+@import "../../../_scss/abstracts/functions.scss";
+@import "../../../_scss/abstracts/mixins.scss";
+@import "../../../_scss/abstracts/variables.scss";
+
+$spacing: 1rem;
+$bgColor: #ddd;
+
+.progress--bar {
+  position: relative;
+  height: 1.6rem;
+  margin: $spacing;
+  background-color: $bgColor;
+  &:after {
+    content: '';
+    display: block;
+    height: 100%;
+    background-color: $color-primary;
+  }
+
+  .progress__number {
+    color: $color-white;
+  }
+}
+
+.progress--circle {
+  position: relative;
+  display: inline-block;
+  margin: $spacing;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  background-color: $bgColor;
+  transition: all .3s;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    border-radius: 50%;
+    background-color: $color-white;
+  }
+  
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: $color-primary;
+  }
+}
+
+.progress__number {
+  @include absCenter;
+  width: 100%;
+  line-height: 1;
+  text-align: center;
+  color: #777;
+}
+
+.progress--pie {
+  &:before {
+    display: none;
+  }
+  .progress__number {
+    color: $color-white;
+    text-shadow: $shadow-text;
+  }
+}
+
+
+$step: 1;
+$loops: round(100 / $step);
+$increment: 360 / $loops;
+$half: round($loops / 2);
+@for $i from 0 through $loops {
+  .progress--bar.progress--#{$i * $step}:after {
+    width: $i * $step * 1%;
+  }
+  .progress--circle.progress--#{$i * $step}:after {
+    @if $i < $half {
+      $nextDeg: 90deg + ($increment * $i);
+      background-image: linear-gradient(90deg, $bgColor 50%, transparent 51%, transparent), linear-gradient($nextDeg, $color-primary 0%, $color-primary-light 50%, $bgColor 51%, $bgColor);
+    }
+    @else {
+      $nextDeg: -90deg + ($increment * ($i - $half));
+      background-image: linear-gradient($nextDeg, $color-primary 0%, $color-primary-light 50%, transparent 51%, transparent), linear-gradient(270deg, $color-primary-light 0%, $color-primary 50%, $bgColor 51%, $bgColor);
+    }
+  }
+}
+
+
+
+
+.progress--circle.progress--circle--slim {
+
+  &:before {
+    top: .7rem;
+    left: .7rem;
+    bottom: .7rem;
+    right: .7rem;
+  }
+}

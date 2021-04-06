@@ -1,0 +1,125 @@
+
+@import "../../../_scss/base/typography.scss";
+
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+}
+
+.step-bar {
+	display: table-cell;
+	height: 400px;
+	vertical-align: middle;
+}
+
+.step-bar__nav {
+	margin-top: 40px;
+}
+
+.step-bar__nav a,
+.step-bar__nav a:active{
+	color: #222;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.step-bar__nav a:hover{
+	color: #999;
+}
+
+.step-bar__nav--next {
+    float: right;
+}
+
+/* Breadcrups CSS */
+
+.step-bar__step {
+	text-align: center;
+	color: #222;
+	cursor: default;
+	margin: 0 3px;
+	padding: 10px 10px 10px 30px;
+	min-width: 200px;
+	float: left;
+	position: relative;
+	background-color: $color-light;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none; 
+  transition: background-color 0.2s ease;
+}
+
+.step-bar__step i {
+    padding-right: .5rem;
+}
+
+.step-bar__step:after,
+.step-bar__step:before {
+	content: " ";
+	position: absolute;
+	top: 0;
+	right: -17px;
+	width: 0;
+	height: 0;
+	border-top: 24px solid transparent;
+	border-bottom: 23px solid transparent;
+	border-left: 17px solid $color-light;	
+	z-index: 2;
+  transition: border-color 0.2s ease;
+}
+
+.step-bar__step:before {
+	right: auto;
+	left: 0;
+	border-left: 17px solid #eee;	
+	z-index: 0;
+}
+
+.step-bar__step:first-child:before {
+	border: none;
+}
+
+.step-bar__step:first-child {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.step-bar__step span {
+	position: relative;
+}
+
+.step-bar__step span:before {
+    opacity: 0;
+	content: "✔";
+	position: absolute;
+	top: -2px;
+	left: -20px;
+}
+
+.step-bar__done {
+    background-color: $color-grey;
+}
+
+.step-bar__done:after {
+    border-left: 17px solid $color-grey;
+}
+
+.step-bar__done span:before {
+    opacity: 1;
+	-webkit-transition: opacity 0.3s ease 0.5s;
+	-moz-transition: opacity 0.3s ease 0.5s;
+	-ms-transition: opacity 0.3s ease 0.5s;
+	transition: opacity 0.3s ease 0.5s;
+}
+
+.step-bar__step.step-bar__current {
+	color: #fff;
+	background-color: $color-primary-dark;
+}
+
+.step-bar__current:after {
+	border-left: 17px solid $color-primary-dark;	
+}

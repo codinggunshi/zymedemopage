@@ -1,0 +1,332 @@
+@import "../../../_scss/base/theme.scss";
+@import "../../../_scss/abstracts/functions.scss";
+@import "../../../_scss/abstracts/mixins.scss";
+@import "../../../_scss/abstracts/variables.scss";
+
+$local-color-border: rgba(144,145,147, .4);
+$local-color-menu-title: #4d4d4d;
+
+
+/****** navigation ******/
+.navigation {
+    position: absolute;
+    top: 0;
+    left: 27rem;
+    z-index: $z-index-float;
+    width: 5.7rem;
+  
+    &__checkbox {
+      display: none;
+    }
+  
+    &__icon {
+      position: relative;
+      margin-top: 4rem;
+  
+      &,
+      &::before,
+      &::after {
+        width: 3rem;
+        height: 0.2rem;
+        background-color: $color-grey-dark;
+        display: inline-block;
+      }
+  
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        transition: all 0.5s;
+      }
+  
+      &::before {
+        top: -0.8rem;
+      }
+  
+      &::after {
+        top: 0.8rem;
+      }
+    }
+  
+    &__button:hover &__icon::before {
+      top: -1.2rem;
+    }
+  
+    &__button:hover &__icon::after {
+      top: 1.2rem;
+    }
+  
+    &__checkbox:checked + &__button &__icon {
+      background-color: transparent;
+    }
+  
+    &__checkbox:checked + &__button &__icon::before {
+      top: 0;
+      transform: rotate(135deg);
+    }
+  
+    &__checkbox:checked + &__button &__icon::after {
+      top: 0;
+      transform: rotate(-135deg);
+    }
+  }
+
+  
+/****** side nav ******/
+.sidenav__container {
+  line-height: 1;
+  height: 100vh;
+  box-shadow: 0 0 3rem 0.5rem rgba(16, 16, 16, 0.57);
+  background-color: $color-blue;
+  position: relative;
+  z-index: $z-index-float;
+}
+
+.flexbox-container {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav__header {
+  background-color: $color-blue-dark;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &-img {
+    margin: 2.25rem 0;
+    height: 3.5rem;
+  }
+}
+
+.sidenav__title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: $local-color-menu-title !important;
+  padding: 2rem;
+  padding-top: 5rem;
+  height: 8rem;
+  border-top: 1px solid rgba($local-color-border, .1);
+  color: $color-text-grey;
+}
+
+.sidenav__menu {
+  list-style: none;
+  display: block;
+  margin-bottom: auto;
+}
+
+.sidenav__menu a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidenav__menu--main > a {
+  color: $color-text-grey;
+  display: block;
+  padding: 2rem;
+  //letter-spacing: 1px;
+  font-weight: bold;
+  transition: all 0.25s ease-in;
+  position: relative;
+  border-bottom: 1px solid $local-color-border;
+}
+
+.sidenav__menu--main:first-child > a {
+  border-top: 1px solid $local-color-border;
+}
+
+.sidenav__menu--main:last-child > a {
+  border-bottom: 1px solid $local-color-border;
+}
+
+.sidenav__menu--main:hover > a {
+  color: $color-text;
+  background: $color-hover;
+
+  & > span > .badge {
+    background-color: $color-text-grey;
+    color: $color-white;
+  }
+
+  & > span > .dropdown-icon {
+    color: $color-text-grey;
+  }
+}
+
+.sidenav__menu--main.open > a,
+.sidenav__menu--main > a.active {
+  background: linear-gradient(to right, $color-blue, $color-blue);
+  color: $color-primary;
+}
+
+.sidenav__menu--sub a {
+  color: $color-text-grey;
+  background: $color-white;
+  display: block;
+  position: relative;
+  font-size: 1.3rem;
+  padding: 1.4rem 2.1rem 1.4rem 6.1rem;
+  font-weight: 300;
+  transition: all 0.25s ease-in;
+}
+
+.sidenav__menu--sub span {
+  font-weight: 600;
+}
+
+.sidenav__menu--sub-sub span {
+  font-weight: 500;
+}
+
+.sidenav__menu--sub:hover > a,
+.sidenav__menu--sub-sub:hover > a {
+  background-color: $color-hover;
+}
+.sidenav__menu--sub.open > a,
+.sidenav__menu--sub > a.active,
+.sidenav__menu--sub-sub > a.active {
+  background-color: $color-blue-light;
+  color: $color-text;
+}
+
+.sidenav__menu--sub-sub a {
+  background: $color-white;
+  font-size: 1.3rem;
+  padding-left: 8.7rem;
+}
+
+.badge {
+  font-size: 1rem;
+  font-weight: 700;
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 50%;
+  background-color: $color-text-grey;
+  color: $color-white;
+  float: right;
+  margin: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--sub {
+    font-size: inherit;
+    background-color: $color-text;
+    color: $color-white;
+  }
+}
+
+.sidenav__icon {
+  padding-right: 2.5rem;
+  font-size: 2rem;
+}
+
+.dropdown-icon {
+  float: right;
+  transform: rotate(90deg);
+  transform-origin: 25% 50%;
+  transition: all 0.5s;
+  color: $color-text-grey;
+
+  &--sub {
+    font-size: inherit;
+    color: $color-text;
+  }
+}
+
+.dropdown-icon-animate {
+  transform: rotate(0deg);
+  transition: all 0.5s;
+}
+
+.sidenav__footer {
+  height: 4.5rem;
+  background-color: rgba($color-white, .3);
+  text-align: right;
+  vertical-align: center;
+
+  display: flex;
+
+  &--left {
+    flex: 1;
+  }
+
+  &--right {
+    flex-basis: 6rem;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($color-white, .6);
+    }
+
+    &:hover i {
+      color: $color-text;
+    }
+  }
+
+  &--icon {
+    @include absCenter;
+    font-size: 2.5rem;
+    color: $color-placeholder;
+  }
+}
+
+
+
+/****** slim nav ******/
+.slim__menu--main {
+  position: relative
+}
+
+.ul-slim {
+  position: absolute; 
+  width: 25rem;
+  top: 0; 
+  left: 100%; 
+  list-style: none; 
+  display: flex; 
+  flex-direction: column; 
+  box-shadow: $shadow-container;
+}
+
+.ul-slim--sub {
+  list-style: none;
+}
+
+.sidenav__menu--main.slim__menu--main:last-child > a {
+  border-bottom: none;
+}
+
+.sidenav__menu--main.slim__menu--main > a {
+  border-top: none;
+  border-left: none;
+}
+
+.sidenav__menu--main.slim__menu--main:hover > a,
+.sidenav__menu--main.slim__menu--main.open > a {
+  color: $color-primary;
+}
+
+.sidenav__menu--main.slim__menu--main > a.active {
+  color: $color-primary;
+}
+
+
+.sidenav__button {
+  align-self: center;
+  padding: 2rem;
+}
+
+
+::ng-deep {
+  ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+  }
+}

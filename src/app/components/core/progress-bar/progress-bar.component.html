@@ -1,0 +1,13 @@
+<ng-container [ngSwitch]="type">
+  <div *ngSwitchCase="'bar'" [ngClass]="'progress--bar progress--' + percentage" #progressDiv>
+    <div *ngIf="showPercentage" class="progress__number" #numberDiv>{{ percentage }}%</div>
+  </div>
+
+  <div *ngSwitchCase="'circle'" [ngClass]="'progress--circle progress--' + percentage" [class]="circleClass" [ngStyle]="circleStyle" #progressDiv>
+    <div *ngIf="showPercentage" class="progress__number">{{ percentage }}%</div>
+  </div>
+
+  <div *ngSwitchCase="'pie'" [ngClass]="'progress--circle progress--pie progress--' + percentage" #progressDiv>
+    <div *ngIf="showPercentage" class="progress__number">{{ percentage }}%</div>
+  </div>
+</ng-container>

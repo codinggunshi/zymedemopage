@@ -1,0 +1,9 @@
+@import "../abstracts/variables.scss";
+
+body {
+  font-size: 1.6rem;
+  font-family: "Lato", sans-serif;
+  //font-family: Helvetica, sans-serif;
+  line-height: 1.7;
+  color: $color-text;
+}

@@ -1,0 +1,129 @@
+@import "../../_scss/abstracts/variables.scss";
+
+.container {
+  height: 100%;
+  background-color: $color-hover;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-rows: 1fr 5%;
+  grid-template-columns: 1fr;
+  grid-gap: 2%;
+
+  .content {
+    transition: all .5s;
+
+    display: grid;
+    grid-template-columns: 37% 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 2.5%;
+
+    &.transform-left {
+      transform: translateX(-39.5%);
+      margin-right: -65.2%; /* 39.5 / 60.5 = 65.2% */
+    }
+
+    .left {
+
+      display: grid;
+      grid-template-rows: 5% 45rem 1fr;
+      grid-template-columns: 36.5% 20% 40.5%;
+      grid-gap: 1.5% 3%;
+
+      grid-template-areas:
+        ". search search"
+        "tree tree selected"
+        "sample sample sample";
+
+      .search {
+        grid-area: search;
+      }
+
+      .tree {
+        grid-area: tree;
+      }
+
+      .selected {
+        grid-area: selected;
+      }
+
+      .sample {
+        grid-area: sample;
+
+        .table {
+          height: 100%;
+        
+          display: flex;
+          flex-direction: column;
+        
+          &__header {
+            flex-basis: 15%;
+            background: rgba($color-primary, 0.8);
+            color: $color-white;
+            padding: 0 1rem;
+        
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+        
+          &__content {
+            flex: 1;
+          }
+        }
+      }
+    }
+
+    .right {
+
+      display: grid;
+      grid-template-rows: 5% 1fr;
+      grid-template-columns: 1fr;
+      grid-gap: 1.5%;
+
+      &__header {
+
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 33% auto 1fr;
+        grid-gap: 3%;
+
+        &__icon-forward {
+          font-size: 2.4rem;
+          color: $color-primary;
+          transform: rotate(180deg);
+          cursor: pointer;
+          transition: all .3s;
+  
+          &:hover {
+            color: $color-primary-dark;
+          }
+  
+          &--rotate {
+            transform: rotate(0deg);
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    // footer is a card, its css grid settings locate in card input property.
+
+    &__left {
+
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: auto auto 1fr;
+      grid-gap: 4%;
+    }
+
+    &__right {
+
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: auto auto auto 1fr auto 1fr;
+      grid-gap: 3%;
+    }
+  }
+}

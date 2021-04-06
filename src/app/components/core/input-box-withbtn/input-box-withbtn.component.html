@@ -1,0 +1,7 @@
+<div class="input-container">
+  <input *ngIf="type!=='date'" (blur)="onBlur()" [mask]="mask" type="text" class="input" [ngClass]="inputBoxClass" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="onModelChanged()" [required]="required" [disabled]="disabled" [minlength]="minlength" [pattern]="pattern" #inputDiv>
+  <input *ngIf="type==='date'" (blur)="onBlur()" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" type="text" class="input" [ngClass]="inputBoxClass" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="onModelChanged()" #inputDiv>
+  <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+  <label *ngIf="!searchDropdown && type!=='date' && showLabel" class="input__label">{{ placeholder }}</label>
+  <app-list *ngIf="searchDropdown" [items]="displayItems" [dropdownStyle]="{marginTop: '1rem'}" [dropdownClass]="value && displayItems.length > 0 ? '' : 'list__hide'" (listItemSelected)="itemSelected($event)"></app-list>
+</div>

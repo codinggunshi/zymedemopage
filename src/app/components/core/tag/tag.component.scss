@@ -1,0 +1,63 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+//default tag
+.tag {
+  background: $color-primary;
+  border-radius: $border-radius 0 0 $border-radius;
+  color: $color-white;
+  display: inline-block;
+  height: 2.6rem;
+  line-height: 2.6rem;
+  padding: 0 2rem 0 2.3rem;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.tag::before {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background: $color-hover;
+  content: "";
+  height: 0.6rem;
+  width: 0.6rem;
+  border-radius: 50%;
+}
+
+.tag::after {
+  background: $color-hover;
+  border-bottom: 1.3rem solid transparent;
+  border-left: 1rem solid $color-primary;
+  border-top: 1.3rem solid transparent;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag:hover {
+  background-color: $color-primary-dark;
+}
+
+.tag:hover::after {
+  border-left-color: $color-primary-dark;
+}
+
+
+//bordered tag
+.tag-bordered {
+  font-size: 1.4rem;
+  color: $color-primary-dark;
+  border-radius: $border-radius;
+  background-color: $color-light;
+  border: 1px solid $color-primary-dark;
+  height: 2.6rem;
+  line-height: 2.6rem;
+  display: inline-block;
+  padding: 0 2rem 0 2.3rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .3s;
+}

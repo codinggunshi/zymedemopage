@@ -1,0 +1,10 @@
+<div class="container" [ngStyle]="tabStyle" [ngClass]="tabClass">
+  <div class="tabs">
+    <div *ngFor="let tab of tabs index as i" class="tabs__header" (click)="selectTab(tab, i)" [class.active]="tab.active" #tabDiv>
+        <i [ngClass]="tab.icon"></i>&nbsp;&nbsp;{{tab.title}}
+        <div *ngIf="i===0" class="tabs__slider" #sliderDiv></div>
+    </div>
+    <i *ngIf="tabs.length > 1 && closable" class="icon ion-md-close tabs__close" (click)="closeTab()"></i>
+  </div>
+  <ng-content></ng-content>
+</div>

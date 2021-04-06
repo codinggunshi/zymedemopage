@@ -1,0 +1,7 @@
+<div class="checkbox" [ngClass]="checkboxClass">
+  <input type="checkbox" [value]="value" [(ngModel)]="checked" [indeterminate]="indeterminate" #inputDiv>
+  <label class="checkbox__label" (click)="toggleCheck()">
+    <span class="checkbox__checkmark" [ngClass]="checkboxClass" #checkboxDiv></span>
+    <span class="checkbox__text" #txt>{{ label }}</span>
+  </label>
+</div>

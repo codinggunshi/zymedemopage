@@ -1,0 +1,7 @@
+<div class="radio">
+  <input type="radio" [value]="value" class="radio__input" [(ngModel)]="checked ? value : defaultValue">
+  <label class="radio__label" (click)="toggleCheck()" #labelDiv>
+      <span class="radio__button" [ngClass]="radioClass" #radioDiv></span>
+      {{ label }}
+  </label>
+</div>

@@ -1,0 +1,110 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.btn-round {
+    &,
+    &:link,
+    &:visited {
+        text-decoration: none;
+        background-color: $color-primary;
+        color: $color-white;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s; 
+        position: relative;
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: $shadow-hover;
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active, 
+    &:focus {
+        outline: none; 
+        transform: translateY(-1px);
+        box-shadow: $shadow-hover-clicked;
+    }
+
+    &::after { 
+        content: "";
+        background-color: $color-primary;
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+
+        transition: all .4s; 
+    }
+}
+
+.btn-round.btn-primary-light {
+    &,
+    &:link,
+    &:visited {
+        background-color: $color-light;
+        color: $color-text;
+    }
+
+    &::after {
+        background-color: $color-light;
+    }
+}
+
+.btn-round.btn-transparent {
+    &,
+    &:link,
+    &:visited {
+        background-color: transparent;
+        border: 2px solid $color-white;
+    }
+
+    &::after {
+        background-color: transparent;
+    }
+}
+
+.btn-round.btn-disable {
+    background-color: $color-grey;
+    opacity: .5;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: translateY(0);
+      background-color: $color-grey;
+      box-shadow: none;
+    }
+
+    &::after {
+        content: none;
+    }
+}
+
+.btn-round.btn-gradient {
+    background-color: transparent;
+    background: linear-gradient(to right, $color-primary, $color-primary-light);
+
+    &::after { 
+        background-color: transparent;
+        background: linear-gradient(to right, $color-primary, $color-primary-light);
+    }
+
+    &:hover {
+        
+        &::after {
+            transform: none;
+        }
+    }
+}

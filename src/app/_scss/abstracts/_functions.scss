@@ -1,0 +1,3 @@
+@function getColor($variable) {
+    @return map-get($themeMap, $variable);
+}

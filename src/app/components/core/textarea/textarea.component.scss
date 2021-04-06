@@ -1,0 +1,38 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.textarea-container {
+  position: relative;
+}
+
+.textarea {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  border: none;
+  resize: none;
+  border-radius: 1rem;
+  outline: none;
+  transition: all 0.5s linear;
+
+  &__span {
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+    font-size: 1.3rem;
+    color: $color-primary;
+    transition: all 0.2s linear;
+  }
+}
+
+.textarea-container.textarea-bordered {
+  border: 1px solid $color-hover;
+  border-radius: 1rem;
+  transition: all .2s;
+
+  &:focus-within {
+    border: 1px solid $color-primary;
+  }
+}

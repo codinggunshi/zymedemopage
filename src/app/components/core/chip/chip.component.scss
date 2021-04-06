@@ -1,0 +1,57 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+$chip-height: 3.2rem;
+$chip-color: $color-hover;
+
+.chip {
+  display: inline-block;
+  background: $chip-color;
+  padding: 0 1.2rem;
+  border-radius: 3.2rem;
+  font-size: 1.3rem;
+  height: $chip-height;
+  line-height: $chip-height;
+
+  &__hoverable:hover {
+    background: #ccc;
+  }
+
+  &__raised {
+    box-shadow: $shadow-element;
+  }
+
+  &__clickable {
+    cursor: pointer;
+  }
+
+  &__icon {
+    display: block;
+    float: left;
+    background: $color-primary;
+    width: $chip-height;
+    border-radius: 50%;
+    text-align: center;
+    color: $color-white;
+    margin: 0 0.8rem 0 -1.2rem;
+  }
+
+  &__remove {
+    display: inline-block;
+    background: $color-primary;
+    border: 0;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0 -0.4rem 0 0.4rem;
+    cursor: pointer;
+    line-height: 2rem;
+    &:after {
+      color: $color-white;
+      content: "x";
+    }
+    &:hover {
+      background: $color-primary-dark;
+    }
+  }
+}

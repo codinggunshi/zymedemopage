@@ -1,0 +1,42 @@
+<div class="tree-container" #containerDiv>
+    <div class="tree-search"><app-search-slide *ngIf="showSearch" [styleClass]="'border-square'" [(ngModel)]="searchValue" (ngModelChange)="onSearchChange($event)"></app-search-slide></div>
+    <ng-scrollbar [autoHide]="true">
+        <ul class="menu">
+          <li *ngFor="let item of items | treeFilter: searchValue;  let i = index" class="menu__main" [ngClass]="[item.items ? 'has-sub' : '', item.open ? 'open' : '']">
+              <a (click)="toggleExpand(item)">
+                  <div class="tree__box">
+                      <i *ngIf="item.items && item.items.length > 0" class="icon ion-md-arrow-dropdown dropdown-icon" [ngClass]="item.open ? 'dropdown-icon-animate' : ''"></i>
+                      <div *ngIf="!item.items || item.items.length === 0" class="dropdown-icon-substitute"></div>
+                      <app-check-box [scale]=".5" (click)="checkboxClicked($event, item)" [checked]="item.checked" [indeterminate]="item.indeterminate"></app-check-box>
+                      <i [ngClass]="item.icon" class="menu__icon"></i>{{ item.label }}
+                  </div>
+              </a>
+              <ul *ngIf="item.items && item.open" [@enterAnimation]>
+                  <li *ngFor="let item of item.items | treeFilter: searchValue;  let j = index" class="menu__sub" [ngClass]="[item.items ? 'has-sub' : '', item.open ? 'open' : '']">
+                      <a (click)="toggleExpand(item)">
+                          <div class="tree__box">
+                              <i *ngIf="item.items && item.items.length > 0" class="icon ion-md-arrow-dropdown dropdown-icon" [ngClass]="item.open ? 'dropdown-icon-animate' : ''"></i>
+                              <div *ngIf="!item.items || item.items.length === 0" class="dropdown-icon-substitute"></div>
+                              <app-check-box [scale]=".4" (click)="checkboxClicked($event, item)" [checked]="item.checked" [indeterminate]="item.indeterminate"></app-check-box>
+                              <div class="menu__sub-padding"></div>
+                              {{ item.label }}                    
+                          </div>
+                      </a>
+                      <ul *ngIf="item.items && item.open" [@enterAnimation]>
+                          <li *ngFor="let item of item.items | treeFilter: searchValue;  let k = index" class="menu__sub--sub">
+                              <a (click)="toggleExpand(item)">
+                                  <div class="tree__box">
+                                      <app-check-box [scale]=".4" (click)="checkboxClicked($event, item)" [checked]="item.checked" [indeterminate]="item.indeterminate"></app-check-box>
+                                      <div class="menu__sub-padding"></div>
+                                      {{ item.label }}
+                                  </div>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+    </ng-scrollbar>
+</div>
+    

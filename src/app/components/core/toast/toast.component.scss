@@ -1,0 +1,26 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.toast {
+  display: inline-block;
+  padding: 1rem;
+  background-color: $color-tooltip;
+  color: $color-white;
+  border-radius: $border-radius;
+  white-space: nowrap;
+  position: fixed;
+  left: 50%;
+  bottom: 3rem;
+  transform: translateX(-50%);
+  animation: fadein .5s, stay 3s .5s, fadeout .5s 3.5s; //4s in total
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 3rem; opacity: 1;}
+}
+
+@keyframes fadeout {
+  from {bottom: 3rem; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}

@@ -1,0 +1,126 @@
+@import "../../../_scss/base/theme.scss";
+@import "../../../_scss/abstracts/functions.scss";
+@import "../../../_scss/abstracts/variables.scss";
+
+.tree-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid $color-hover;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.tree-search {
+  background: rgba($color-primary, .8);
+  padding: .1rem;
+}
+
+.menu {
+  list-style: none;
+  display: block;
+  z-index: 0 !important;
+}
+
+.menu a {
+  text-decoration: none;
+  cursor: pointer;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+}
+
+.menu__main > a {
+  color: $color-text;
+  text-transform: uppercase;
+  display: block;
+  padding: .3rem 1.2rem;
+  background: $color-white;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  transition: all 0.25s ease-in;
+  position: relative;
+}
+
+.menu__main:first-child > a {
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem;
+}
+
+.menu__main:last-child > a {
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem;
+}
+
+.menu__main:hover > a {
+  color: $color-primary;
+}
+
+.menu__main.open > a,
+.menu__main > a.active {
+  background: #ddd;
+  color: $color-primary;
+}
+.menu__sub a {
+  background: $color-white;
+  display: block;
+  position: relative;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding: .1rem 3rem;
+
+  color: $color-text;
+  padding-left: 4.2rem;
+  transition: all 0.25s ease-in;
+}
+
+.menu__sub:hover > a,
+.menu__sub--sub:hover > a {
+  color: $color-primary;
+}
+
+.menu__sub.open > a {
+  background-color: #ddd;
+}
+
+.menu__sub-padding {
+  padding-right: .2rem;
+}
+
+.menu__sub--sub a {
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding-left: 8.2rem;
+  background-color: $color-white;
+}
+
+.dropdown-icon {
+  font-size: 2.4rem;
+  display: block;
+  transform: rotate(-90deg);
+  transition: all 0.5s;
+  color: $color-text;
+  margin-right: .5rem;
+}
+
+.dropdown-icon-animate {
+  transform: rotate(0deg);
+  transition: all 0.5s;
+}
+
+.dropdown-icon-substitute {
+  margin-left: 1.8rem;
+}
+
+.menu__icon {
+  padding-right: 1rem;
+  font-size: 2rem;
+}
+
+.tree__box {
+  display: flex;
+  align-items: center;
+}

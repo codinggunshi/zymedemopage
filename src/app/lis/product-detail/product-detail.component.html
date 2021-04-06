@@ -1,0 +1,85 @@
+<div class="detail-container">
+  <div class="detail-container__left">
+    <div class="detail-container__left--img" [ngStyle]="{backgroundImage: 'url(../../../assets/supplements/'+product.name+productImageSuffix+'.png)'}">
+      <i [ngClass]="checkFavorite() !== -1 ? 'fas fa-heart product-item--like--icon product-item--like--icon-solid' : 'far fa-heart product-item--like--icon'" (click)="toggleFavorite()"></i>
+      <i *ngIf="productImageSuffix !== ''" class="fas fa-angle-left product-item--slide--icon product-item--slide--icon--left" (click)="setProductImg('')"></i>
+      <i *ngIf="productImageSuffix !== '-version-2'" class="fas fa-angle-right product-item--slide--icon product-item--slide--icon--right" (click)="setProductImg('-version-2')"></i>
+    </div>
+    <div class="detail-container__left--buttons">
+      <div class="detail-container__left--text">Standard Size:</div>
+      <span *ngFor="let capsule of capsulesInfo index as i" class="quick-view-container__btn" [ngClass]="capsule.focus ? 'quick-view-container__btn--focus' : ''" (click)="capsuleSelected(i)">{{ capsule.amount }} capsules</span>
+      <div style="margin-top: 20%"></div>
+      <app-button-round [label]="'ADD TO PROTOCOL'" [buttonClass]="'btn-gradient'" [buttonStyle]="{padding: '.75rem 3rem', fontSize: '1.4rem'}" (click)="addToProtocol(product)"></app-button-round>
+    </div>
+  </div>
+  <div class="detail-container__right">
+      <div class="item detail-container__right--header">
+        <div class="detail-container__right--header__title">Aqua-E</div>
+        <div class="detail-container__right--header__subtitle">Water-Soluble Vitamin E TOCOPHEROLS + TOCOTRIENOLS</div>
+        <div><span class="full-price" style="margin-right: 1rem">$42.90</span><span class="detail-container__right--header__price">$38.61</span><span><b>&nbsp;(8 Ounces)</b></span></div>
+      </div>
+      <div class="item detail-container__right--tab">
+        <app-tabs [closable]="false" [tabClass]="'container-bordered'">
+          <app-tab [tabTitle]="'Description'" [tabIcon]="'icon ion-md-bicycle'">
+            <app-card [style]="{borderRadius: 0, boxShadow: 'none', heigth: '100%'}">
+              <div class="detail-container__right--text">
+                  <div>A Dietary Supplement</div>
+                  <div>YASOO</div>
+                  <div>Health Inc.®</div>
+                  <div>8.0 fl. oz. (237 ml)</div>
+                  <div class="detail-container__right--text--bold u-text-margin-top">More Info:</div>
+                  <div>Aqua-E® is a unique, patented ** product which supplies the complete Vitamin E family of tocopherols plus tocotrienols in water soluble form. It is particularly rich in 
+                  gamma-tocopherol and tocotrienols.</div>
+                  <div>Aqua-E® is specially formulated for enhanced absorption especially for people who have conditions associated with malabsorption.
+                  Aqua-E® is odorless and has a neutral taste. It mixes easily with most beverages and water. Dosing may be easily adjusted to meet specific needs. It is also particularly 
+                  suitable for people who have difficulty swallowing capsules and tablets and those who are strict vegetarians.</div>
+                  <div>** Patent pending</div>
+                  <div>Aqua-E® is a registered trademark of YASOO Health, Inc.</div>
+                  <div class="detail-container__right--text--bold u-text-margin-top">Supplemental Facts:</div>
+                  <div>Aqua-E®, provided by YASOO Health Inc.®, is a unique, patent pending liquid which supplies the complete vitamin E family of tocopherols plus tocotrienols in water-soluble 
+                  form. Aqua-E is specially formulated for enhanced absorption, is odorless and has a neutral taste. It mixes easily with most beverages and water and is formulated to allow 
+                  for individualized dosing of vitamin E for those that have special needs. This Febel product is free of animal products, yeast, wheat, added colors or flavors, sweeteners, and 
+                  salt and is suitable for vegetarians and children or adults that have difficulty swallowing softgels.</div>
+                  <div class="detail-container__right--text--bold u-text-margin-top">Suggested Usage:</div>
+                  <div>As a dietary supplement, Aqua-E® can be taken directly or mixed with your favorite beverage.</div>
+                  <div class="detail-container__right--text--bold u-text-margin-top">Serving Size:</div>
+                  <div>Amount Per Serving</div>
+                  <div>d-alpha-Tocopherol ...100 IU / 333% DV</div>
+                  <div>d-gamma plus d-delta-Tocopherol ...60mg*</div>
+                  <div>Total Tocopherols ...142mg*</div>
+                  <div>Total Tocotrienols ...8mg*</div>
+                  <div>Total Tocopherols plus tocotrienols ...150mg*</div>
+                  <div>* Daily Value not established.</div>
+                  <div class="detail-container__right--text--bold u-text-margin-top">Contains:</div>
+                  <div>Water, d-alpha-tocopheryl polyethylene glycol-1000 succinate (TPGS), potassium sorbate, sorbic acid, and linoleic acid.</div>
+                  <div>KEEP OUT OF REACH OF CHILDREN</div>
+                  <div>Shake Well Before Each Use</div>
+                  <div>Refrigerate product after opening.</div>
+                  <div>Persons with malabsortion may require significantlly larger doses and should use this product under the supervision of a physician.</div>
+              </div>
+            </app-card>
+          </app-tab>
+          <app-tab [tabTitle]="'Tab 2'" [tabIcon]="'icon ion-md-airplane'">
+            <app-card [style]="{borderRadius: 0, boxShadow: 'none', heigth: '100%'}">
+              <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                   numquam deserunt
+                   quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                   neque quas!</div>
+            </app-card>
+          </app-tab>
+          <app-tab [tabTitle]="'Tab 3'" [tabIcon]="'icon ion-md-car'">
+            <app-card [style]="{borderRadius: 0, boxShadow: 'none', heigth: '100%'}">
+              <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                   numquam deserunt
+                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                   numquam deserunt
+                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+                   numquam deserunt
+                   quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+                   neque quas!</div>
+            </app-card>
+          </app-tab>
+        </app-tabs>
+      </div>
+  </div>
+</div>

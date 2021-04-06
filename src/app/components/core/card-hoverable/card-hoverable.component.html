@@ -1,0 +1,13 @@
+<div class="card-hoverable" [ngStyle]="cardStyle" [ngClass]="cardClass">
+
+  <div class="card-hoverable__header">
+    <img *ngIf="imgUrl" [src]="imgUrl" [ngStyle]="imgStyle" [ngClass]="imgClass">
+    <h1 *ngIf="title">{{title}}</h1>
+    <h2 *ngIf="subtitle">- {{subtitle}} -</h2>
+  </div>
+
+  <div class="card-hoverable__content">
+      <ng-content></ng-content>
+  </div>
+
+</div>

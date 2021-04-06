@@ -1,0 +1,116 @@
+<ng-scrollbar [autoHide]="false">
+<div class="app-dashboard-container">
+  <div class="header">
+    <div class="header__user">
+      <i class="fas fa-user-shield header__user--icon"></i>
+      <div class="header__user--title">Bei Kang</div>
+      <div class="header__user--text">
+        <div>sonyasun87@gmail.com &nbsp;.&nbsp; <span class="header__user--text--link">Learn more</span></div>
+        <div><i class="icon ion-md-time header__user--text--icon"></i>last logged in 2 days ago </div>
+      </div>
+    </div>
+    <div class="header__buttons">
+      <div class="header__buttons--button u-margin-button"><i class="icon ion-md-add header__buttons--icon"></i>Add a new protocol</div>
+      <div class="header__buttons--button"><i class="icon ion-md-cart header__buttons--icon"></i>Client Cart ( 0 )</div>
+    </div>
+    <div class="header__user--panel">
+      <app-button-standard [label]="'APP USAGE'" [buttonClass]="'btn-green'" [buttonStyle]="{padding: '.9rem 3.2rem', fontWeight: 'bold'}"></app-button-standard> <!-- add 2px to compensate the 2px border -->
+      <app-button-standard [label]="'PROTOCOLS'" [buttonClass]="'btn-bordered-green'" [buttonStyle]="{padding: '.7rem 3rem', fontWeight: 'bold'}"></app-button-standard>
+      <app-button-standard [label]="'LAB RESULTS'" [buttonClass]="'btn-bordered-green'" [buttonStyle]="{padding: '.7rem 3rem', fontWeight: 'bold'}"></app-button-standard>
+    </div>
+  </div>
+  <div class="content">
+    <div class="upper">
+      <div class="item item__grid">
+        <div class="item__header">
+          <div class="item__header--title">Most Consumed Foods</div>
+          <div class="item__header--buttons">
+            <a *ngFor="let option of options index as i" class="btn-round" [ngStyle]="i !== 2 && {'marginRight': '.7rem'}" [ngClass]="actives[0] === option ? 'btn-gradient-green' : 'btn-transparent-primary'" (click)="toggleActive(0, option)">{{ option }}</a>
+          </div>
+        </div>
+        <div class="item__body item__body--chart">
+          <ngx-charts-bar-horizontal [scheme]="colorSchemeFood" [results]="consumedFood" [gradient]="true" [xAxis]="true"
+            [yAxis]="true" [schemeType]="'linear'">
+          </ngx-charts-bar-horizontal> 
+        </div>
+      </div>
+      <div class="item item__grid">
+        <div class="item__header">
+
+          <div class="item__header--title">Top 5 Nutrients</div>
+          <div class="item__header--buttons">
+            <a *ngFor="let option of options index as i" class="btn-round" [ngStyle]="i !== 2 && {'marginRight': '.7rem'}" [ngClass]="actives[1] === option ? 'btn-gradient-green' : 'btn-transparent-primary'" (click)="toggleActive(1, option)">{{ option }}</a>
+          </div>
+        </div>
+        <div class="item__body item__body--chart-small">
+          <ngx-charts-bar-horizontal [scheme]="colorSchemeNutrients" [results]="top5Nutrients" [gradient]="true" [xAxis]="true"
+            [yAxis]="true" [barPadding]="35" [showDataLabel]="true" [schemeType]="'linear'">
+          </ngx-charts-bar-horizontal>
+        </div>
+      </div>
+      <div class="item item__grid">
+        <div class="item__header">
+          <div class="item__header--title">Least 5 Nutrients</div>
+          <div class="item__header--buttons">
+            <a *ngFor="let option of options index as i" class="btn-round" [ngStyle]="i !== 2 && {'marginRight': '.7rem'}" [ngClass]="actives[2] === option ? 'btn-gradient-green' : 'btn-transparent-primary'" (click)="toggleActive(2, option)">{{ option }}</a>
+          </div>
+        </div>
+        <div class="item__body item__body--chart-small">
+          <ngx-charts-bar-horizontal-stacked [scheme]="colorSchemeNutrientsLeast" [results]="last5Nutrients" [gradient]="true" [xAxis]="true"
+            [yAxis]="true" [barPadding]="35">
+          </ngx-charts-bar-horizontal-stacked>
+        </div>
+      </div>
+    </div>
+    <div class="lower">
+      <div class="item"><app-ag-grid style="height: 100%"></app-ag-grid></div>
+      <div class="item item__grid">
+        <div class="item__header">
+          <div class="item__header--title">App Usage</div>
+          <div class="item__header--buttons">
+            <a *ngFor="let option of options index as i" class="btn-round" [ngStyle]="i !== 2 && {'marginRight': '.7rem'}" [ngClass]="actives[3] === option ? 'btn-gradient-green' : 'btn-transparent-primary'" (click)="toggleActive(3, option)">{{ option }}</a>
+          </div>
+        </div>
+        <div class="item__body item__body--progress">
+            <div class="item__body--progress__chart" #chartContainer>
+              <app-progress-bar [type]="'circle'" [percentage]="73" [circleClass]="'progress--circle--slim'" [circleStyle]="{fontSize: '3rem', width: progressBarContainerSize/13 + 'rem', height: progressBarContainerSize/13 + 'rem'}" (window:resize)="onResize($event)"></app-progress-bar>
+            </div>
+            <div class="item__body--progress__text">Last Month Usage Summary</div>
+        </div>
+      </div>
+      <div class="item item__grid">
+        <div class="item__header">
+          <div class="item__header--title">Client Ranking</div>
+          <div class="item__header--buttons">
+            <a *ngFor="let option of options index as i" class="btn-round" [ngStyle]="i !== 2 && {'marginRight': '.7rem'}" [ngClass]="actives[4] === option ? 'btn-gradient-green' : 'btn-transparent-primary'" (click)="toggleActive(4, option)">{{ option }}</a>
+          </div>
+        </div>
+        <div class="item__body item__body--rank">
+          <div class="header header--small">
+            <div class="header__user header__user--small">
+              <i class="fas fa-user-shield header__user--icon header__user--icon--small"></i>
+              <div class="header__user--title header__user--title--small">Bei Kang</div>
+              <div class="header__user--text header__user--text--small">
+                <div>sonyasun87@gmail.com</div>
+              </div>
+            </div>
+            <div class="header--small-text">
+              <span class="header--small-text--large">12</span>/200
+            </div>
+          </div>
+          <div class="item__body--list">
+            <ng-scrollbar [autoHide]="true">
+              <div *ngFor="let rank of rankings index as i" class="list__row">
+                <div class="list__row--number">{{ i + 1 }}.</div>
+                <div>{{ rank.name }}</div>
+                <div></div>
+                <div class="list__row--email">{{ rank.email }}</div>
+              </div>
+            </ng-scrollbar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-scrollbar>

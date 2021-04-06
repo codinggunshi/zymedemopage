@@ -1,0 +1,112 @@
+<div class="lab-summary-container">
+  <div class="header">
+    <div class="header--text u-margin-button">Find Lab Results</div>
+      <div class="header--search">
+        <app-input-box [showLabel]="false" [inputBoxClass]="'bordered-primary-transparent'" [placeholder]="'Search for a product, brand or condition'"></app-input-box>
+        <div class="header--right-bar">
+          <i class="fas fa-search header--icon"></i>
+        </div>
+      </div>
+    <div><app-button-standard [label]="'Download Report'" [buttonStyle]="{padding: '1.2rem 3rem'}"></app-button-standard></div>
+  </div>
+  <div class="content-header">
+    <div class="content-header__title">Ye Yuan</div>
+    <div class="content-header__search"><app-search-slide [placeholder]="'Quick find test'"></app-search-slide></div>
+  </div>
+  <div class="content">
+    <div class="content__header">
+      <div class="cell cell__header"><app-check-box [checkboxClass]="'checkbox-gray'" [scale]="'.6'" (click)="toggleCheckAll()" [checked]="checkAll" [indeterminate]="checkallIndeterminate"></app-check-box></div>
+      <div class="cell cell__header">Test Name</div>
+      <div class="content__header--group" [ngClass]="showDetail ? 'content__header--group--hide' : ''">
+        <div class="cell cell__header">Risky</div>
+        <div class="cell cell__header">Date by Created</div>
+        <div class="cell cell__header">Lab Performed</div>
+        <div class="cell cell__header cell__header--group">Actions</div>
+      </div>
+      <div class="content__header--arrow" [ngClass]="showDetail ? 'content__header--arrow--show' : ''"><i class="fas fa-long-arrow-alt-right"></i></div>
+    </div>
+
+    <div class="content__body" [ngClass]="showDetail ? 'content__body--dark' : ''" (clickOutside)="showDetail && hideReport()">
+      <div *ngFor="let data of summaryData | slice:10*activePage:10*(activePage+1) index as i" class="content__row">
+        <div class="cell"><app-check-box [checkboxClass]="'checkbox-gray'" [scale]="'.6'" (click)="toggleCheck(i)" [checked]="data.checked"></app-check-box></div>
+        <div class="cell" [ngClass]="showDetail ? 'cell__testname' : ''" (click)="showDetail && swithShownDetail(i)">{{ data.testName }}</div>
+        <div class="cell"><i *ngIf="data.risky === 'danger'" class="fas fa-exclamation-triangle cell__danger-icon"></i><span class="cell__risky" *ngIf="data.risky === 'N/A'">N/A</span></div>
+        <div class="cell">{{ data.date }}</div>
+        <div class="cell cell__img" [ngClass]="data.labPerformed"></div>
+        <div class="cell cell__view"><i class="icon ion-md-eye cell__view-icon"></i><span class="cell__view-text" (click)="showReport(i)">View report</span></div>
+        <div class="cell cell__view"><i class="icon ion-md-download cell__view-icon"></i><span class="cell__view-text">Download report</span></div>
+      </div>
+      <div class="content-cover-container" [ngClass]="showDetail ? 'content-cover-container--show': ''">
+        <div class="content-cover-container__header">
+          <div class="content-cover-container-pane__cell">Pane</div>
+          <div class="content-cover-container-pane__cell">Tests</div>
+          <div class="content-cover-container-pane__cell">Results</div>
+          <div class="content-cover-container-pane__cell">Ref range</div>
+          <div class="content-cover-container-pane__cell">Suggested protocols</div>
+        </div>
+        <div class="content-cover-container__body">
+          <ng-scrollbar [autoHide]="false">
+          <div *ngFor="let detail of summaryData[activeDetail].details index as i" class="content-cover-container__body--inner" [style.height]="detail.tests.length * 10 + '%'">
+            <div class="inner-panel">
+              {{ detail.panel }}
+            </div>
+            <div class="inner-rows">
+              <div *ngFor="let test of detail.tests index as j" class="inner-rows--row" [style.height]="100 / detail.tests.length + '%'">
+                <div class="content-cover-container-pane__cell inner-rows--row__testname">{{ test.testName }}</div>
+                <div class="content-cover-container-pane__cell">
+                  <div class="result-panel" [ngClass]="test.result.condition === 'high' ? 'result-panel--high' : 'result-panel--normal'">
+                    <div>{{ test.result.quantity }}</div>
+                    <i *ngIf="test.result.condition === 'high'" class="fas fa-long-arrow-alt-up result-panel__item"></i>
+                    <div>(ng/mL)</div>
+                  </div>
+                </div>
+                <div class="content-cover-container-pane__cell inner-rows--row__range">{{ test.refRange }}</div>
+              </div>
+            </div>
+            <div class="inner-protocol content-cover-container-pane__cell">
+              <span class="inner-rows--row__protocol">
+                Protocol Name
+                <div class="inner-rows--row__protocol--transparent" [ngClass]="i !== 0 && i === summaryData[activeDetail].details.length - 1 ? 'inner-rows--row__protocol--transparent--top' : 'inner-rows--row__protocol--transparent--bottom'"></div>
+                <div class="inner-rows--row__protocol--float-card" [ngClass]="i !== 0 && i === summaryData[activeDetail].details.length - 1 ? 'inner-rows--row__protocol--float-card--top' : 'inner-rows--row__protocol--float-card--bottom'">
+                  <div class="float-card__header">Your Protocol: <span class="float-card__header--text">Protocol Name</span></div>
+                  <div class="float-card__content">
+                    <div class="float-card__content--header">
+                      <div>Black Cohosh 2.5% 250mg (60 capsules) by Vital Nutrients-</div>
+                      <div>Black Cohosh 2.5% 250mg (60 capsules) by Vital Nutrients-</div>
+                    </div>
+                    <div class="float-card__content--text">
+                      each client, but starting with a template helps save just a few minutes during each client visit each client, but 
+                      starting with a template helps save just a few minutes during each client visibility
+                    </div>
+                    <div class="float-card__content--footer">
+                      <app-button-standard [label]="'Create a protocol'" [buttonClass]="'btn-primary'" [buttonStyle]="{padding: '.5rem .7rem', fontSize: '1.2rem', borderRadius: 'none'}"></app-button-standard>
+                      <span style="margin-right: 1.5rem"></span>
+                      <app-button-standard [label]="'My Favorite'" [buttonClass]="'btn-primary'" [buttonStyle]="{padding: '.5rem .7rem', fontSize: '1.2rem', borderRadius: 'none'}"></app-button-standard>
+                    </div>                    
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div> 
+          </ng-scrollbar>
+        </div>
+      </div>
+      <div class="content-cover-container-pane" [ngClass]="showDetail ? 'content-cover-container-pane--show': ''" [style.top]="activeDetail % 10 * 10.15 + '%'" [style.bottom]="100 - activeDetail % 10 * 10.15 - 8.65 + '%'">
+        <app-check-box [checkboxClass]="'checkbox-filled'" [scale]="'.6'" [checked]="true" class="content-cover-container-pane__cell"></app-check-box>
+        <div class="content-cover-container-pane__cell content-cover-container-pane__testname">{{ summaryData[activeDetail].testName }}</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer" [ngClass]="showDetail ? 'footer--hide' : ''">
+    <div class="footer__pager">
+      <div class="footer__pager--circle" (click)="goToFirstPage()"><i class="fas fa-angle-double-left"></i></div>
+      <div class="footer__pager--circle" (click)="goToPreviousPage()"><i class="fas fa-angle-left"></i></div>
+      <div *ngIf="activePage >= 2 && activePage !== pagesInfo.length - 1 || activePage > 2 && activePage === pagesInfo.length - 1">...</div>
+      <div *ngFor="let page of pagesInfo index as i" class="footer__pager--number" [ngClass]="page.active ? 'footer__pager--number--active' : ''" [hidden]="(activePage !== 0 && activePage !== pagesInfo.length - 1) ? i > activePage + 1 || activePage -1 > i : i > activePage + 2 || activePage -2 > i" (click)="activatePageByIdx(i)"><span>{{ i+1 }}</span></div>
+      <div *ngIf="pagesInfo.length - 1 > activePage + 1 && activePage !== 0 || pagesInfo.length - 1 > activePage + 2 && activePage === 0">...</div>
+      <div class="footer__pager--circle" (click)="goToNextPage()"><i class="fas fa-angle-right"></i></div>
+      <div class="footer__pager--circle" (click)="goToLastPage()"><i class="fas fa-angle-double-right"></i></div>
+    </div>
+  </div>
+</div>

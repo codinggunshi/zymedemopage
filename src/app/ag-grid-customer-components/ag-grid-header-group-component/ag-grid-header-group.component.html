@@ -1,0 +1,6 @@
+<div>
+    <div class="customHeaderLabel"><i class="{{iconClass}}"></i> {{this.params.displayName}}</div>
+    <div *ngIf="isExpandable" (click)="expandOrCollapse()" class="{{'customExpandButton' + (this.expanded ?  ' expanded': ' collapsed')}}">
+        <i class="icon ion-md-arrow-round-forward"></i>
+    </div>
+</div>

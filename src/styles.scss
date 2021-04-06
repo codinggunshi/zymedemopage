@@ -1,0 +1,99 @@
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "./app/_scss/base/base.scss";
+@import "./app/_scss/base/typography.scss";
+$ag-icons-path: "../node_modules/ag-grid-community/src/styles/icons/";
+$font-family: 'Lato', sans-serif;
+$secondary-font-family: 'Lato', sans-serif;
+$secondary-font-size: 1.6rem;
+$hover-color: $color-blue-light;
+$selected-color: $color-blue-light;
+$primary-color: $color-primary-dark;
+$border-color: rgba(178, 178, 178, 0.7);
+$secondary-foreground-color: rgba(0, 0, 0, 0.67);
+@import "~ag-grid-community/src/styles/ag-grid.scss";
+@import "~ag-grid-community/src/styles/ag-theme-material.scss";
+
+@import "~@angular/cdk/overlay";
+@include cdk-overlay();
+
+
+// scroll bar
+::-webkit-scrollbar {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: $color-white;
+  &-thumb {
+    background-color: rgba(178, 178, 178, 0.7);
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(178, 178, 178, 0.7);
+}
+
+//placeholder
+::placeholder {
+  color: $color-placeholder;
+}
+
+//hidden property
+[hidden] {
+  display: none !important;
+}
+
+
+//override ng-pick-datetime default style
+.owl-dt-container {
+  font-size: 1.6rem;
+}
+
+.owl-dt-calendar-cell-selected {
+  background-color: $color-primary-dark !important;
+}
+
+.owl-dt-container-buttons {
+  color: $color-primary-dark !important;
+}
+
+
+
+
+.ng-scrollbar-view {
+  overflow-x: hidden !important;
+}
+
+
+
+
+.drag-drop-draggable {
+  user-select: none;
+}
+
+.drag-drop-movable:not(.drag-drop-dragging) { //enable smooth position reset when not moving
+  transition: transform .3s ease-in-out;
+}
+
+.draggable-helper-overlay {
+  pointer-events: none !important;
+}
+
+
+
+
+ .ripple-directive__effect{
+  position: absolute;
+  border-radius: 50%;
+  animation: ripple-animation 1.5s;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  from {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}

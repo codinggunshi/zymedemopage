@@ -1,0 +1,12 @@
+<div class="dropdown" (clickOutside)="closeDropdown()">
+	<div (click)="openMenu()">
+		<input class="dropdown__input" [ngClass]="dropdownClass" [value]="selected" readonly />
+		<i class="icon ion-md-arrow-dropdown dropdown__icon"></i>
+	</div>
+	<ul class="dropdown__menu" [ngClass]="opened ? 'open' : ''">
+		<i class="icon ion-md-close dropdown__menu__icon" (click)="closeMenu()"></i>
+		<li *ngFor="let item of items index as i" (click)="select(item.value)">
+				<a>{{item.displayName}}</a>
+		</li>
+	</ul>
+</div>

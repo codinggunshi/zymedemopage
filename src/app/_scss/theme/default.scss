@@ -1,0 +1,35 @@
+@import "../color/colors";
+@import "../utils/pxToRem";
+$lis-prefix: "lis";
+$main-padding: 50;
+$minior-padding: 15;
+/**
+  * Layout
+  */
+
+$layout-header-background: #fff !important;
+$layout-footer-background: #fff;
+$layout-header-padding: 0rem pxTorem($main-padding);
+$layout-header-height: 64px;
+$layout-header-line-height: 64px;
+$layout-footer-background: $white;
+$layout-footer-padding: 24px 50px;
+$text-color: $gray-dark;
+$font-size-base: 16;
+$layout-trigger-height: 48px;
+$layout-trigger-background: #002140;
+$layout-sider-text-color: $white;
+$layout-zero-trigger-width: 36px;
+$layout-zero-trigger-height: 42px;
+// Layout light theme
+//sider
+$layout-sider-background: #343a40;
+$layout-sider-background-light: $white;
+$layout-trigger-background-light: $white;
+$layout-trigger-color-light: $text-color;
+$layout-trigger-height: 48px;
+$layout-trigger-color: $white;
+$layout-zero-trigger-width: 36px;
+$layout-zero-trigger-height: 42px;
+$border-radius-base: 4px;
+$border-radius-sm: 2px;

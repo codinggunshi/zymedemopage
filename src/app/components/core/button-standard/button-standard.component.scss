@@ -1,0 +1,112 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.btn-standard {
+    background: linear-gradient(to right, $color-primary, $color-primary-light);
+    color: $color-white;
+    border: none;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    transition: all .2s;
+    border-radius: $border-radius;
+
+    &:hover {
+        background: linear-gradient(to left, $color-primary, $color-primary-light);
+        box-shadow: $shadow-element;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-standard.btn-primary {
+    background: $color-primary;
+
+    &::after {
+        background: $color-primary;
+    }
+
+    &:hover {
+        box-shadow: $shadow-element;
+    }
+}
+
+.btn-standard.btn-green {
+    background: linear-gradient(to right, $color-violet, $color-green);
+    border-radius: 0;
+
+    &:hover {
+        background: linear-gradient(to right, $color-green, $color-violet);
+        box-shadow: $shadow-element;
+    }
+}
+
+.btn-standard.btn-primary-dark {
+    background: $color-primary-dark;
+
+    &::after {
+        background: $color-primary-dark;
+    }
+
+    &:hover {
+        background: $color-primary;
+        box-shadow: $shadow-element;
+    }
+}
+
+.btn-standard.btn-light {
+    background: #59fad2;
+
+    &::after {
+        background: #59fad2;
+    }
+
+    &:hover {
+        box-shadow: $shadow-element;
+    }
+}
+
+.btn-standard.btn-bordered {
+    color: $color-primary;
+    background: transparent;
+    border: 2px solid transparent;
+	border-image: linear-gradient(to right, $color-primary, $color-primary-light);
+    border-image-slice: 1;
+    border-radius: $border-radius;
+
+    &::after {
+        background: transparent;
+    }
+
+    &:hover {
+        box-shadow: $shadow-element;
+    }
+}
+
+.btn-standard.btn-bordered-green {
+    color: $color-primary;
+    background: transparent;
+    border: 2px solid transparent;
+	border-image: linear-gradient(to right, $color-violet, $color-green);
+    border-image-slice: 1;
+    border-radius: $border-radius;
+
+    &::after {
+        background: transparent;
+    }
+
+    &:hover {
+        box-shadow: $shadow-element;
+    }
+} 
+
+.btn-standard.btn-disabled {
+    background: $color-grey;
+    opacity: .5;
+    cursor: not-allowed;
+
+    &:hover {
+        background: $color-grey;
+        box-shadow: $shadow-element;
+    }
+}

@@ -1,0 +1,66 @@
+$color-primary: #d34992;
+$color-primary-light: #ef8e63;
+$color-primary-dark: #B849D3;
+
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-light: #29ffc1;
+$color-light-2: #6cd1b7;
+$color-grey: #545454;
+$color-grey-light: #b6b6b7;
+$color-grey-dark: #272727;
+$color-blue: #242e44;
+$color-blue-light: #D1E6FF;
+$color-blue-dark: #1e2735;
+$color-violet: #826bdd;
+$color-green: #6cd1b7;
+
+$color-text: #686566;
+$color-text-grey: #808080;
+$color-text-light: #adb4b8;
+$color-title: #242342;
+$color-sub-title: #54617a;
+$color-tooltip: rgba(0, 0, 0, .75);
+$color-placeholder: rgba(178, 178, 178, 1);
+$color-hover: #eee;
+
+$color-info: #059;
+$color-info-bg: #BEF;
+$color-success: #270;
+$color-success-bg: #DFF2BF;
+$color-warn: #9F6000;
+$color-warn-bg: #FEEFB3;
+$color-error: #D8000C;
+$color-error-bg: #FFBABA;
+
+$font-size-header: 2.5rem;
+
+
+//border
+$border-radius: 3px;
+$color-border: rgba(0, 0, 0, .67);
+$color-border-light: #d8d8d8;
+
+
+//box shadow
+$shadow-text: rgba(black, 0.35) 1px 1px 1px;
+$shadow-element: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+$shadow-hover: 0 1rem 2rem rgba($color-black, .2);
+$shadow-hover-clicked: 0 0.5rem 1rem rgba($color-black, .2);
+$shadow-container: 0 .5rem .5rem -.3rem rgba(0,0,0,.2), 0 .8rem 1rem 1px rgba(0,0,0,.14), 0 .3rem 1.4rem .2rem rgba(0,0,0,.12);
+$shadow-card: 0 1.5rem 4rem rgba($color-black, .2);
+
+//margin and padding
+$padding-card: 1rem;
+
+
+//z index
+$z-index-cover: 10;
+$z-index-dropdown: 700;
+$z-index-float: 800;
+
+$z-index-nav-float: 900;
+$z-index-nav-float-content: 950;
+$z-index-nav-float-button: 999;
+
+$z-index-highest: 1000; // the same z index as ngx-pick-datetime overlay

@@ -1,0 +1,64 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.btn-flat {
+    cursor: pointer;
+    display: inline-block;
+
+    &:link,
+    &:visited {
+        color: $color-text;
+        display: inline-block;
+        text-decoration: none;
+        padding: .3rem;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-light;
+        color: $color-black;
+        border-bottom: none;
+        box-shadow: $shadow-hover;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: $shadow-hover-clicked;
+        transform: translateY(0);
+    }
+}
+
+.btn-flat.btn-flat-primary {
+    &:link,
+    &:visited {
+        color: $color-primary;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: $shadow-hover;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: $shadow-hover-clicked;
+        transform: translateY(0);
+    }
+}
+
+.btn-flat.btn__border-bottom {
+    border-bottom: 1px solid $color-text;
+
+    &:hover {
+        border-bottom: 1px solid $color-light;
+    }
+}
+
+.btn-flat.btn__light { // used in dark background
+    color: $color-white;
+
+    &:hover {
+        color: $color-black;
+        background-color: $color-white;
+    }
+}

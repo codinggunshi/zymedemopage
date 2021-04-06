@@ -1,0 +1,18 @@
+@import "../../_scss/abstracts/variables.scss";
+
+.setting-container{
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    padding: 1% 2% 2% 2%;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    &__header {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: $color-title;
+        padding-bottom: 2%; 
+    }
+}

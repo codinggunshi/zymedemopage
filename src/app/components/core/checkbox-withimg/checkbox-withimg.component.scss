@@ -1,0 +1,93 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+/******* for default color checkbox ******/
+.checkbox {
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+
+  &__text {
+    position: absolute;
+    top: 0;
+    left: 4rem;
+  }
+
+  input {
+    display: none;
+  }
+
+  &__label {
+    cursor: pointer;
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border: .5rem solid $color-text;
+  }
+
+  &__checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: .7rem;
+    top: .4rem;
+    width: .7rem;
+    height: 1.1rem;
+    border: solid $color-text;
+    border-width: 0 .4rem .4rem 0;
+    transform: rotate(45deg);
+  }
+
+  input:checked + &__label &__checkmark::after {
+    display: block;
+  }
+
+  input:indeterminate + &__label &__checkmark::after {
+    display: block;
+    transform: rotate(90deg);
+    border-width: 0 .4rem 0 0;
+  }
+}
+
+/******* for primary color checkbox ******/
+.checkbox.checkbox-primary {
+  color: $color-primary;
+}
+.checkbox__checkmark.checkbox-primary {
+  border: .5rem solid $color-primary;
+}
+.checkbox__checkmark.checkbox-primary::after {
+  border: solid $color-primary;
+  border-width: 0 .4rem .4rem 0;
+}
+
+
+
+
+
+.checkbox__checkmark.checkbox-gray {
+  border: .2rem solid $color-text-light;; //-.3rem
+}
+.checkbox__checkmark.checkbox-gray::after {
+  border: solid $color-text;;
+  border-width: 0 .4rem .4rem 0;
+  left: 1rem; // +.3rem
+  top: .7rem; // +.3rem
+}
+
+
+
+
+
+.checkbox__checkmark.checkbox-filled {
+  border: .5rem solid $color-green;
+}
+.checkbox__checkmark.checkbox-filled::after {
+  border: solid $color-green;
+  border-width: 0 .4rem .4rem 0;
+}

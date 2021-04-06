@@ -1,0 +1,53 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.search-input {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  width: 4rem;
+  padding: .85rem 1.05rem 1.25rem 1.05rem;
+  border: none;
+  border-radius: 10em;
+  cursor: pointer;
+  outline: none;
+  background: $color-white url("../../../../assets/images/search-icon.png") no-repeat 1.2rem center;
+  transition: all .5s;
+
+  &:hover {
+    box-shadow: $shadow-element;
+  }
+
+  &:focus,
+  &:valid {
+    width: 100%;
+    padding-left: 4rem;
+    background-color: $color-white;
+    box-shadow: $shadow-element;
+    cursor: auto;
+  
+    &::placeholder {
+      color: $color-placeholder;
+    }
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button {
+    cursor: pointer;
+  }
+}
+
+.search-input.border-square {
+  
+  &:focus,
+  &:valid {
+    border-radius: 0;
+  }
+}
+
+.search-input.full-width {
+  width: 100%;
+}

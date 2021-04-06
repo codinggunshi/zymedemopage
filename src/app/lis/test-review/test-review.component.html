@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="content" [ngClass]="slideLeft ? 'transform-left' : ''">
+        <div class="left">
+            <div class="search">
+                <app-input-box [searchDropdown]="true" [items]="items" [placeholder]="'Enter Sample ID/Barcode'"></app-input-box>
+            </div>
+            <div class="tree">
+                <app-card [style]="{height: '100%'}">
+                    <app-tree [showSearch]="true" [items]="treeItems"></app-tree>
+                </app-card>
+            </div>
+            <div class="selected">
+                <app-list [hasHeader]="true" [title]="'Selected Tests'" [items]="items" [dropdownStyle]="{position: 'relative', height: '100%', zIndex: 0}"
+                    [maxHeight]="2000" [showCheckbox]="true"></app-list>
+            </div>
+            <div class="sample">
+                <app-card [style]="{height: '100%'}">
+                    <div class="table">
+                        <div class="table__header">
+                            <div><b>&nbsp;&nbsp;Sample List </b></div>
+                            <app-input-round (keyup)="onQuickFilterChanged($event)" [padding]=".6" [placeholder]="'Type text to filter...'"></app-input-round>
+                        </div>
+                        <ag-grid-angular class="ag-theme-material table__content" [gridOptions]="gridOptions" [rowData]="rowData"
+                            [columnDefs]="columnDefs" enableColResize enableSorting enableFilter rowSelection="multiple">
+                        </ag-grid-angular>
+                    </div>
+                </app-card>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right__header">
+                <app-multiselect-dropdown [placeholder]="'Please Select:'" [data]="dropdownListSingle" [(ngModel)]="selectedItemsSingle"
+                    [settings]="dropdownSettingsSingle"></app-multiselect-dropdown>
+                <i class="icon ion-md-fastforward right__header__icon-forward" (click)="toggleTransform()" [ngClass]="slideLeft ? 'right__header__icon-forward--rotate' : ''"></i>
+                <div></div>
+            </div>
+            <app-card [style]="{height: '100%'}">
+                <app-ag-grid></app-ag-grid>
+            </app-card>
+        </div>
+    </div>
+    <app-card [style]="{height: '100%'}" class="footer" [cardContentStyle]="{display: 'grid', gridTemplateRows: '1fr', gridTemplateColumns: '37% 1fr', gridGap: '2.5%'}">
+        <div class="footer__left">
+            <app-button-round [label]="'Refresh'" [buttonStyle]="{padding: '.55rem 2.5rem', fontSize: '1.2rem'}"></app-button-round>
+            <app-button-round [label]="'EnableAutoRefresh'" [buttonStyle]="{padding: '.55rem 2.5rem', fontSize: '1.2rem'}"></app-button-round>
+        </div>
+        <div class="footer__right">
+            <app-button-round [label]="'Refetch Master List'" [buttonStyle]="{padding: '.55rem 2.5rem', fontSize: '1.2rem'}"></app-button-round>
+            <app-button-round [label]="'Approve All'" [buttonStyle]="{padding: '.55rem 2.5rem', fontSize: '1.2rem'}"></app-button-round>
+            <app-button-round [label]="'Release Results'" [buttonStyle]="{padding: '.55rem 2.5rem', fontSize: '1.2rem'}"></app-button-round>
+            <div></div>
+            <app-button-flat [label]="'Manual Entry &rarr;'" [buttonClass]="'btn__border-bottom'" [buttonStyle]="{fontSize: '1.3rem', fontWeight: 500}"></app-button-flat>
+            <div></div>
+        </div>
+    </app-card>
+</div>

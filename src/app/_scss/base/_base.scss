@@ -1,0 +1,145 @@
+@import "../abstracts/variables.scss";
+@import "../abstracts/mixins";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html { /* root */
+  font-size: 62.5%; /* default of browser font size is 16, 16 * 0.625 = 10px; This defines what 1rem is. */
+
+  /* Conflict media query is always determined by the order(the last one get applied), not css specificity, so put larger one first, small one last.
+     Simply define font-size and the definition of 1rem also changes. */
+  @include respond(tab-land) {
+      font-size: 56.25%; // 1rem = 9px
+  }
+
+  @include respond(tab-port) { /* we want the same for the phone and tab-port */
+      font-size: 50%; // 1rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) { /* this is min-width, not max-width as the previous, so no worry about css conflict */
+      font-size: 75%; // 1rem = 12px
+  }
+}
+
+body {
+  box-sizing: border-box;
+  background-color: $color-white;
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+/* Cannot be used on an element whoes before/after pseudo element has already been styled.
+   For those elements, the simplest way is to use a wrapper element to wrap the current element and put tooltip on the wraper. */
+[tooltip] {
+  position: relative;
+}
+
+[tooltip]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0.4rem 0.6rem 0 0.6rem;
+  border-style: solid;
+  border-color: $color-tooltip transparent transparent transparent;
+  z-index: $z-index-float;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+[tooltip-position="left"]::before {
+  left: 0%;
+  top: 50%;
+  margin-left: -1.2rem;
+  transform: translatey(-50%) rotate(-90deg);
+}
+
+[tooltip-position="top"]::before {
+  top: 0;
+  left: 50%;
+  margin-top: -0.8rem;
+}
+
+[tooltip-position="bottom"]::before {
+  top: 100%;
+  margin-top: 0.8rem;
+  transform: translateX(-50%) translatey(-100%) rotate(-180deg);
+}
+
+[tooltip-position="right"]::before {
+  left: 100%;
+  top: 50%;
+  margin-left: 1px;
+  transform: translatey(-50%) rotate(90deg);
+}
+
+[tooltip]::after {
+  content: attr(tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  background: $color-tooltip;
+  text-align: center;
+  color: $color-white;
+  padding: 0.4rem 0.2rem;
+  font-size: 1.2rem;
+  min-width: 8rem;
+  border-radius: $border-radius;
+  pointer-events: none;
+  padding: 0.4rem;
+  z-index: $z-index-float;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+[tooltip-position="left"]::after {
+  left: 0%;
+  top: 50%;
+  margin-left: -0.8rem;
+  transform: translateX(-100%) translateY(-50%);
+}
+
+[tooltip-position="top"]::after {
+  top: 0;
+  left: 50%;
+  margin-top: -0.8rem;
+}
+
+[tooltip-position="bottom"]::after {
+  top: 100%;
+  margin-top: 0.8rem;
+  transform: translateX(-50%) translateY(0%);
+}
+
+[tooltip-position="right"]::after {
+  left: 100%;
+  top: 50%;
+  margin-left: 0.8rem;
+  transform: translateX(0%) translateY(-50%);
+}
+
+[tooltip]:hover::after,
+[tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* commonly used css class */
+.ag-grid-round-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: inline-block;
+}

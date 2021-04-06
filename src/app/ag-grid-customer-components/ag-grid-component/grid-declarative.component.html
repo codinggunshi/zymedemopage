@@ -1,0 +1,42 @@
+<div class="table">
+    <div class="table__header">
+            <div><b>&nbsp;&nbsp;Product Seles History: </b>{{rowCount}}</div>
+            <app-input-round (keyup)="onQuickFilterChanged($event)" [padding]=".4" [placeholder]="'Type text to filter...'"></app-input-round>
+    </div>      
+
+        <ag-grid-angular class="ag-theme-material table__content"
+                         [gridOptions]="gridOptions"
+                         [showToolPanel]="false"
+                         [rowData]="rowData"
+                         (gridReady)="onGridReady($event)"
+                         (modelUpdated)="onModelUpdated()"
+                         
+                         [frameworkComponents]="components"
+
+                         enableColResize
+                         enableSorting
+                         enableFilter
+                         groupHeaders
+                         suppressRowClickSelection
+                         rowSelection="multiple">
+            <ag-grid-column headerName="Employee" [headerGroupComponentFramework]="components.headerGroupComponent" [headerGroupComponentParams]="{iconClass: 'icon ion-md-people', isExpandable: true}">
+                <ag-grid-column headerName="Name" field="name" [cellRenderer]="nameCellRenderer" [checkboxSelection]="true" [headerCheckboxSelection]="true" 
+                [headerCheckboxSelectionFilteredOnly]="true" [pinned]="false" [filterParams]="{cellRenderer: nameCellRenderer}"></ag-grid-column>
+                <ag-grid-column headerName="Country" field="country"  [cellRenderer]="countryCellRenderer"
+                                [pinned]="false" [filterParams]="getCountryFilterParams()" [editable]="true" [cellEditor]="'agRichSelectCellEditor'" [cellEditorParams]="countryOptions"></ag-grid-column>
+                <ag-grid-column headerName="Date of Birth" field="dob" [width]="220" [pinned]="false" [columnGroupShow]="'open'"
+                                [cellRenderer]="parseDate" [filter]="'agDateColumnFilter'"  [editable]="true" [cellEditorFramework]="components.DatePickerComponent"></ag-grid-column>
+            </ag-grid-column>
+            <ag-grid-column headerName="IT Skills">
+                <ag-grid-column headerName="Skills"  [suppressSorting]="true"
+                                [cellRenderer]="skillsCellRenderer" [filter]="getSkillFilter()"></ag-grid-column>
+                <ag-grid-column headerName="Proficiency" field="proficiency"
+                                [cellRenderer]="percentCellRenderer" [filter]="getProficiencyFilter()" [editable]="true" [cellEditorFramework]="components.InputValidateComponent" [cellEditorParams]="{rules: '00'}"></ag-grid-column>
+            </ag-grid-column>
+            <ag-grid-column headerName="Contact" [headerGroupComponentFramework]="components.headerGroupComponent" [headerGroupComponentParams]="{iconClass: 'icon ion-md-information-circle'}">
+                <ag-grid-column headerName="Mobile" field="mobile" filter="agTextColumnFilter" [cellRenderer]="phoneCellRenderer" [editable]="true" [cellEditorFramework]="components.InputValidateComponent" [cellEditorParams]="{rules: '(000) 000-0000'}"></ag-grid-column>
+                <ag-grid-column headerName="Address" field="address" filter="agTextColumnFilter" [editable]="true" [cellEditorFramework]="components.AddressAutocompleteComponent"></ag-grid-column>
+                <ag-grid-column headerName="Note" field="note" filter="agTextColumnFilter" [editable]="true" [cellEditorFramework]="components.TextareaComponent"></ag-grid-column>
+            </ag-grid-column>
+        </ag-grid-angular>
+</div>

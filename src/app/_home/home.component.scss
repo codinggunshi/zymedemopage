@@ -1,0 +1,538 @@
+@import "../_scss/abstracts/variables";
+@import "../_scss/abstracts/mixins";
+
+.container {
+    height: 100vh;
+}
+
+.home-gradient {
+  background-image: linear-gradient(
+    45deg,
+    #826bdd 0%,
+    #826bdd 40%,
+    #20ffc1 100%
+  );
+  background-size: cover;
+  height: 100vh;
+  z-index: -1;
+  clip-path: ellipse(100% 50% at 50% 40%);
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 85%;
+    align-items: center;
+
+    display: flex;
+
+    &__img {
+        width: 40%;
+        background-image: url("images/logo.png");
+        background-size: 25rem auto;
+        background-position: 20% 50%;
+        background-repeat: no-repeat;
+        height: 100%;
+    }
+
+    &__item {
+        margin-right: auto;
+        font-size: 2.5rem;
+        font-weight: 400;
+        color: $color-hover;
+    }
+
+    &__hover {
+        cursor: pointer;
+        transition: all .2s;
+
+        &:hover {
+            transform: scale(1.1) translateY(-1px);
+        }
+    }
+
+    &__active {
+        font-weight: bold;
+        color: $color-white;
+    }
+}
+
+.content {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+        padding-left: 10%;
+
+        &--title {
+            color: #59fad2;
+            font-size: 5.5rem;
+            font-weight: bold;
+        }
+        
+        &--title-2 {
+            color: $color-white;
+            font-size: 6.5rem;
+            font-weight: bold;
+        }
+
+        &--body {
+            color: $color-hover;
+            font-size: 2.5rem;
+            font-weight: 100;
+            line-height: 1.2;
+        }
+
+        &--button {
+            font-size: 3.3rem;
+        }
+
+    }
+
+    &__image {
+        background-image: url("images/home-background-img.png");
+        background-size: 70rem auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100%;
+    }
+}
+
+.u-margin-title {
+    margin-top: -6rem;
+}
+
+.u-margin-title-2 {
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+}
+
+.u-margin-body {
+    margin-bottom: 6rem;
+}
+
+.u-margin-button {
+    margin-right: 3rem;
+}
+
+
+
+
+/****************************** section about/panel *****************/
+
+.section-about {
+    height: 40vh;
+    background-color: $color-white;
+    padding: 0 15%;
+    position: relative;
+
+    &__title {
+        text-align: center;
+        font-size: 4rem;
+        color: $color-black;
+        font-weight: bold;
+    }
+
+    &__content {
+        text-align: center;
+        font-size: 2rem;
+        color: #999999;
+    }
+
+    &__summary {
+        background-color:#f9f9f9;
+        border-radius: 1rem;
+        position: absolute;
+        top: 65%;
+        left: 10%;
+        right: 10%;
+        height: 25vh;
+
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        &--item {
+            position: relative;     
+        }
+
+        &--item-border {
+            border-right: 1px solid $color-hover;
+        }
+
+        &--content {
+            @include absCenter;
+            text-align: center;
+
+            &-1 {
+                font-size: 3.5rem;
+                font-weight: bold;
+                color: $color-black;
+            }
+
+            
+            &-2 {
+                font-size: 1.8rem;
+                color: #999999;
+            }
+        }
+    }
+}
+
+.section-panel {
+    //height: 60vh;
+    height: 40vh;
+    background-color: #707070;
+    padding: 0 5%;
+    
+    display: grid;
+    //grid-template-rows: 20% repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5%;
+    align-items: center;
+    justify-content: center;
+
+    &__items {
+        display: grid;
+
+        grid-template-rows: 20% 1fr;
+        grid-template-columns: 10% 1fr;
+        grid-gap: 3rem 2.5rem;
+
+        &--1 {
+            grid-row: 1/-1;
+            grid-column: 1;
+            justify-self: flex-start;
+            align-self: flex-start;
+
+            font-size: 6rem;
+            color: $color-light;
+        }
+
+        &--2 {
+            grid-row: 1;
+            grid-column: 2;
+
+            color: $color-white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        &--3 {
+            grid-row: 2;
+            grid-column: 2;
+
+            color: #999999;
+        }
+
+        &--icon {
+            margin-top: -1.8rem;
+        }
+    }
+}
+
+.u-margin-about-title {
+    margin: 3rem 0;
+}
+
+
+
+
+
+/****************************** section client/brand *****************/
+.section-client {
+    height: 80vh;
+    background-color: #eeeeee;
+    padding: 0 5%;
+    
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+
+    &__comment {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2%;
+        margin: 5% 0;
+
+        &--item {
+            background-color: $color-white;
+            height: 100%;
+            position: relative;
+
+            &::before {
+                content: "\201C";
+                position: absolute;
+                top: 0;
+                left: 0;
+                line-height: 75%;
+                font-size: 20rem;
+                color: #eeeeee;
+                z-index: 1;
+            }
+        }
+
+        &--container {
+            @include absCenter;
+            text-align: center;
+            width: 80%;
+
+            &-text {
+                color: #999999;
+                font-size: 2.2rem;
+            }
+
+            &-author {
+                color: $color-text;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            &-company {
+                color: #999999;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+.section-brand {
+    height: 20vh;
+    background-image: linear-gradient(to right, #20ffc1 0%, #826bdd 100%);
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    &__item {
+        position: relative;
+
+        &--container {
+            @include absCenter;
+
+            color: rgba($color-white, .8);
+            font-size: 5rem;
+        }
+
+        &--icon {
+            cursor: pointer;
+            display: inline-block;
+            transition: all .2s;
+
+            &:hover {
+                transform: scale(1.1);
+                color: rgba($color-white, 1);
+              }
+        }
+    }
+}
+
+.u-margin-comment-content {
+    margin-bottom: 4.5rem;
+}
+
+.u-padding-title-top {
+    padding-top: 10rem;
+}
+
+
+
+
+
+
+/********************* section footer ****************/
+.section-footer__top {
+    height: 35vh;
+    position: relative;
+}
+
+.section-footer__board {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 70vh;
+    background-color: #eeeeee;
+    z-index: 1;
+    border-radius: .5rem;
+
+    &--container {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    &--content {
+        @include absCenter;
+        width: 100%;
+        text-align: center;
+    }
+
+    &--title {
+        font-size: 5rem;
+        font-weight: bold;
+        color: $color-black;
+
+        &-2 {
+            color: $color-light;
+        }
+    }
+
+    &--text {
+        font-size: 2rem;
+        color: #999999;
+    }
+
+    &-image {
+        z-index: 2;
+        height: 25rem;
+        width: 35rem;
+        position: absolute;
+
+        &--1 {
+            top: 0;
+            left: 0;
+            background-image: url("images/board-1.png");
+            background-size: 30rem auto;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        &--2 {
+            top: 0;
+            right: 0;
+            background-image: url("images/board-2.png");
+            background-size: 30rem auto;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        &--3 {
+            bottom: 1rem;
+            left: -13rem;
+            background-image: url("images/board-3.png");
+            background-size: 30rem auto;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        &--4 {
+            bottom: 0;
+            right: 0;
+            background-image: url("images/board-4.png");
+            background-size: 17rem auto;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+.section-footer__bottom {
+    height: 65vh;
+    background-color: #707070;
+}
+
+.section-footer {
+    text-align: center;
+    padding-top: 40vh; // 65-(100-70) + (100-70)/2
+    color: rgba($color-white, .7);
+    font-size: 1.8rem;
+
+    &__regulatory {
+        font-size: 1.2rem;
+        line-height: 1.4;
+        padding: 0 10%;
+        margin-bottom: 5vh;
+    }
+
+    &__link {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        text-decoration: underline;
+    }
+
+    &__copyright {
+        margin-top: 1rem;
+        text-align: right;
+        font-size: 1.3rem;
+        padding-right: 10%;
+    }
+}
+
+
+
+.modal-container {
+    padding: 4% 5%;
+    font-size: 1.5rem;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    &__header {
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: $color-title;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    &__content {
+        line-height: 1.4;
+    }
+
+    .level1 {
+        font-weight: bold;
+    }
+
+    .level1, .level3 {
+        margin-bottom: 1.5rem;
+    }
+}
+
+
+
+
+
+
+/******************* nav to top ****************/
+.nav-to-top {
+    position: fixed;
+    height: 4rem;
+    width: 4rem;
+    top: 93vh;
+    right: 3rem;
+    border-radius: $border-radius;
+    z-index: $z-index-nav-float-button;
+    background-color: rgba($color-black, .2);
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba($color-black, .4);
+    }
+
+    &__icon {
+        color: $color-white;
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+}
+
+
+
+::ng-deep {
+  ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+  }
+}
+

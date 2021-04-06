@@ -1,0 +1,40 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.btn-circle {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  font-size: 2.4rem;
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  cursor: pointer;
+  box-shadow: $shadow-element;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-circle.primary-dark {
+    background-color: $color-primary;
+    //also change color property if needed
+
+    &:hover {
+        background-color: $color-primary-dark;
+    }
+}
+
+.btn-circle.btn-disabled {
+  background-color: $color-grey;
+  opacity: .5;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: $color-grey;
+  }
+}

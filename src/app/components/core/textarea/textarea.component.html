@@ -1,0 +1,4 @@
+<div class="textarea-container" [ngClass]="textareaClass">
+  <textarea [rows]="row" [maxLength]="maxLength" [(ngModel)]="text" class="textarea" (blur)="onBlur()" (keyup)="onKeyUp($event)" #textareaDiv></textarea>
+  <span class="textarea__span">{{ maxLength - (text ? text.length : 0) }}</span>
+</div>

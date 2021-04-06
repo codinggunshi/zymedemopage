@@ -1,0 +1,6 @@
+<div *ngIf="show" class="chip" #chip>
+  <div *ngIf="label" class="chip__icon">{{ label }}</div>
+  {{ text }}
+  <button *ngIf="closable" type="button" (click)="removeChip()" class="chip__remove">
+  </button>
+</div>

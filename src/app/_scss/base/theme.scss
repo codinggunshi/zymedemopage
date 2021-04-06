@@ -1,0 +1,19 @@
+.theme-wrapper {
+    --color-primary: #5186C5;
+    --color-primary-rgb: 81, 134, 197;
+    --color-primary-dark: #025BC5;
+    --color-primary-dark-rgb: 2, 91, 197;
+    --color-primary-dark-2: #001C74;
+    --color-primary-dark-2-rgb: 0, 28, 116;
+    --color-light-gray-1: #D1E6FF;
+}
+
+$themeMap: (
+    --color-primary: var(--color-primary),
+    --color-primary-rgb: var(--color-primary-rgb),
+    --color-primary-dark: var(--color-primary-dark),
+    --color-primary-dark-rgb: var(--color-primary-dark-rgb),
+    --color-primary-dark-2: var(--color-primary-dark-2),
+    --color-primary-dark-2-rgb: var(--color-primary-dark-2-rgb),
+    --color-light-gray-1: var(--color-light-gray-1)
+);

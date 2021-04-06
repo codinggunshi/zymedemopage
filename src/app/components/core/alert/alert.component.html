@@ -1,0 +1,5 @@
+<div *ngIf="showAlert" [ngClass]="isClosed ? [cssClass, 'alert-close'] : cssClass" #alertDiv>
+  <i [ngClass]="cssIcon"></i>
+  {{ text }}
+  <span *ngIf="isClosable" class="alert-close-btn" (click)="close()">&times;</span> 
+</div>

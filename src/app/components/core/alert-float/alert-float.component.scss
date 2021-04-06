@@ -1,0 +1,90 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+/* local colors scheme  */
+$white: rgb(255,255,255);
+$red: rgba(133,0,0,.85);
+$orange: rgba(240,120,0,.85);
+$green: rgba(0,92,0,.85);
+$blue: rgba(112,184,255,.85);
+$black: rgb(0,0,0);
+
+
+.alert {
+  justify-content: space-around;
+  display: flex;
+  position: fixed;
+  top: 0;
+  outline: none;
+  min-width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  padding: 1rem 0;
+  transition: all .6s;
+  z-index: $z-index-float;
+
+  &__show {
+    opacity: 1;
+    visibility: visible;
+    transition: all .6s;
+  }
+
+  &__info {
+    font-weight: 700;
+  }
+
+  &__msg {
+    color: inherit;
+  }
+
+  &__btn-close {
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    line-height: .8;
+    border: 1px solid transparent;
+  
+    &:hover,
+    &:focus {
+      filter: invert(100%);
+      border: 1px solid $white;
+    }
+  }
+
+  &__img-close {
+    &:before {
+      content: '\00d7'; // X
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.danger {
+  background-color: $red;
+  color: $white;
+  span {
+    &:before {
+      content: '\26A0'; // ⚠
+    }
+  }
+}
+
+.warning {
+  background-color: $orange;
+  color: $black;
+  span {
+    &:before {
+      content: '\26A0'; // ⚠
+    }
+  }
+}
+
+.success {
+  background-color: $green;
+  color: $white;
+  span {
+    &:before {
+      content: '\2713'; // ✓
+    }
+  }
+}

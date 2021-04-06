@@ -1,0 +1,59 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+.list {
+    position: absolute;
+    width: 100%;
+    z-index: $z-index-dropdown;
+    //border: 1px solid rgba(178, 178, 178, 0.7);
+    border-radius: .3rem;
+    background: $color-white;
+    box-shadow: $shadow-container;
+    opacity: 1;
+    visibility: visible;
+    transition: all .4s cubic-bezier(.25,.8,.25,1);
+    transform-origin: top;
+    backface-visibility: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        flex-basis: 10%;
+        margin: $padding-card;
+        background: rgba($color-primary, .8);
+        color: $color-white;
+
+        display: flex;
+        align-items: center;
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__hide {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1, 0);
+    }
+
+    ul {
+        list-style: none;
+    }
+    
+    &__item {
+        padding: .6rem 1rem;
+        cursor: pointer;
+        text-align: left;
+
+        &:hover {
+            background-color: $color-hover;
+            transition: all .3s;
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}

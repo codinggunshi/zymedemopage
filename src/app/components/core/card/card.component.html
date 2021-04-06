@@ -1,0 +1,10 @@
+<div class="card" [ngStyle]="style" [ngClass]="styleClass">
+    <div class="card__img" *ngIf="image === true && imgUrl" #imgDiv></div>
+    <div class="card__title" *ngIf="title" #titleDiv>{{title}}</div>
+    <div class="card__body">
+        <div class="card__body-subtitle" *ngIf="subtitle">{{subtitle}}</div>
+        <div class="card__body-content" [ngStyle]="cardContentStyle">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+@import "../../_scss/abstracts/variables.scss";
+
+::ng-deep .owl-dt-container {
+    font-size: 1.4rem !important;
+  }
+  
+  ::ng-deep .owl-dt-calendar-cell-selected {
+    background-color: var(--color-primary-dark) !important;
+  }
+  
+  ::ng-deep .owl-dt-container-buttons {
+    color: var(--color-primary-dark) !important;
+  }
+
+  i {
+    cursor: pointer;
+    transition: all .3s;
+  }
+
+  i:hover {
+      color: $color-primary;
+  }

@@ -1,0 +1,52 @@
+@import "../../_scss/abstracts/variables.scss";
+
+.customHeaderLabel {
+    margin-left: .5rem;
+    margin-top: .3rem;
+    float: left;
+}
+
+.customExpandButton {
+    float: right;
+    margin-top: .5rem;
+    margin-left: .3rem;
+}
+
+.expanded {
+    animation-name: toExpanded;
+    animation-duration: 1s;
+    transform: rotate(180deg);
+}
+
+.collapsed {
+    color: $color-primary;
+    animation-name: toCollapsed;
+    animation-duration: 1s;
+    transform: rotate(0deg);
+}
+
+@keyframes toExpanded {
+    from {
+        color: $color-primary;
+        transform: rotate(0deg);
+    }
+    to {
+        color: black;
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes toCollapsed {
+    from {
+        color: black;
+        transform: rotate(180deg);
+    }
+    to {
+        color: $color-primary;
+        transform: rotate(0deg);
+    }
+}
+
+i {
+    font-size: 1.8rem;
+}

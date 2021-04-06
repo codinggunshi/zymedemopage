@@ -1,0 +1,36 @@
+@import "../../_scss/abstracts/variables.scss";
+
+::ng-deep .ag-header-cell {
+    border-right: 1px solid rgba(178, 178, 178, 0.2);
+}
+
+::ng-deep .ag-header-group-cell {
+    border-right: 1px solid rgba(178, 178, 178, 0.2);
+}
+
+::ng-deep .ag-row {
+    border-right: 1px solid rgba(178, 178, 178, 0.2);
+}
+
+
+.table {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+      flex-basis: 10%;
+      background: rgba($color-primary, .8);
+      color: $color-white;
+      padding: 0 1rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__content {
+        flex-basis: 90%;
+    }
+}

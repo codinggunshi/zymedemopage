@@ -1,0 +1,57 @@
+<div class="dashboard-container">
+  <div class="content">
+    <div class="content__title">
+      <div class="content__title--header u-margin-button">Dashboard</div>
+      <div class="content__title--date"><app-input-box [inputBoxClass]="'input-round'" [type]="'date'" [placeholder]="'Select Date'"></app-input-box></div>
+    </div>
+    <div class="content__card">
+      <div class="content__item">
+        <div class="content__card--title">Clients</div>
+        <div class="content__card--number">78</div>
+        <div class="content__card--description">
+            <div class="content__card--description--number"><i class="fas fa-long-arrow-alt-up content__card--description--icon"></i>5.25%</div>
+            <div class="content__card--description--text">Since last month</div>
+        </div>
+      </div>
+      <div class="content__item">
+        <div class="content__card--title">Orders</div>
+        <div class="content__card--number">4,120</div>
+        <div class="content__card--description">
+            <div class="content__card--description--number content__card--description--number-2"><i class="fas fa-long-arrow-alt-down content__card--description--icon"></i>5.25%</div>
+            <div class="content__card--description--text">Since last month</div>
+        </div>
+      </div>
+      <div class="content__item">
+        <div class="content__card--title">Earning</div>
+        <div class="content__card--number">$7,542</div>
+        <div class="content__card--description">
+            <div class="content__card--description--number"><i class="fas fa-long-arrow-alt-up content__card--description--icon"></i>1.20%</div>
+            <div class="content__card--description--text">Since last month</div>
+        </div>
+      </div>
+      <div class="content__item">
+        <div class="content__card--title">Growths</div>
+        <div class="content__card--number">35.52%</div>
+        <div class="content__card--description">
+            <div class="content__card--description--number"><i class="fas fa-long-arrow-alt-up content__card--description--icon"></i>5.25%</div>
+            <div class="content__card--description--text">Since last month</div>
+        </div>
+      </div>
+    </div>
+    <div class="content__line-chart content__item">
+      <ngx-charts-line-chart
+        [scheme]="colorScheme" [results]="eraPaid" [gradient]="true" [xAxis]="true" [yAxis]="true"
+        [showXAxisLabel]="true" [showYAxisLabel]="false" [roundDomains]="true"
+        [xAxisLabel]="'Past 7 Days Revenue'" [curve]="curve" (select)="onSelect($event)">
+      </ngx-charts-line-chart>
+    </div>
+    <div class="content__table content__item">
+        <app-ag-grid style="height: 100%"></app-ag-grid>
+    </div>
+    <div class="content__pie-chart content__item">
+      <ngx-charts-pie-chart [scheme]="colorScheme" [results]="issuePie" [explodeSlices]="true"
+        [labels]="true" [legendTitle]="'Top Sells'" [legend]="true" [trimLabels]="false" [doughnut]="false" [gradient]="true" (select)="onSelect($event)">
+      </ngx-charts-pie-chart>
+    </div>
+  </div>
+</div>

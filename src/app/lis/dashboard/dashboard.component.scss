@@ -1,0 +1,118 @@
+@import "../../_scss/abstracts/variables.scss";
+
+
+.dashboard-container {
+    height: 100%;
+    background-color: $color-hover;
+}
+
+.content {
+    height: 100%;
+    padding: 1.5% 5%;
+
+    display: grid;
+
+    grid-template-rows: 5% 20% 20% 1fr;
+    grid-template-columns: 13% 13% 29% repeat(2, 1fr);
+    grid-gap: 3.5% 4%;
+
+    &__item {
+        background-color: $color-white;
+        box-shadow: $shadow-container;
+        border-radius: 1rem;
+        padding: 1.5rem 3rem;
+        min-width: 0;
+        min-height: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__title {
+        grid-column: 1/-1;
+        align-self: center;
+
+        display: flex;
+
+        &--header {
+            font-size: $font-size-header;
+            font-weight: bold;
+            color: $color-title;
+        }
+
+        &--date {
+            flex-basis: 15rem;;
+        }
+    }
+
+    &__card {
+        grid-row: 2/4;
+        grid-column: 1/3;
+
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 7%;
+
+        &--title {
+            font-size: 1.8rem;
+        }
+
+        &--number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: $color-title;
+        }
+
+        &--description {
+            display: flex;
+            flex-direction: column;
+
+            &--number {
+                color: $color-success;
+                font-size: 1.8rem;
+                font-weight: bold;
+
+                &-2 {
+                    color: $color-error;
+                }
+            }
+
+            &--icon {
+                font-size: 2.2rem;
+            }
+
+            &--text {
+                font-size: 1.2rem;
+                color: $color-text-light;
+            }
+        }
+    }
+
+    &__line-chart {
+        grid-row: 2/4;
+        grid-column: 3/-1;
+
+        padding: 0;
+    }
+
+    &__table {
+        grid-row: 4/-1;
+        grid-column: 1/4;
+
+        padding: 1rem 1rem;
+    }
+
+    &__pie-chart {
+        grid-row: 4/-1;
+        grid-column: 4/-1;
+
+        padding: 0;
+    }
+}
+
+
+.u-margin-button {
+    margin-right: 3rem;
+}

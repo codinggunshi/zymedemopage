@@ -1,0 +1,243 @@
+@import "../../../_scss/abstracts/variables.scss";
+
+$base-color: $color-primary;
+$disable-background-color: rgba(178, 178, 178, 0.5);
+
+.multiselect-dropdown {
+    position: relative;
+    width: 100%;
+
+    .dropdown-btn {
+        display: inline-block;
+        width: 100%;
+        padding: .55rem 1rem;
+        margin-bottom: 0;
+        text-align: left;
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: $color-white;
+        border-radius: .4rem;
+        outline: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .selected-item {
+            margin-right: .5rem;
+            background: $base-color;
+            padding: 0 .5rem;
+            color: $color-white;
+            border-radius: .2rem;
+            display: inline-block;
+            transition: all .2s;
+
+            a {
+                text-decoration: none;
+            }
+        }
+
+        .selected-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-icon {
+            display: inline-block;
+            top: .8rem;
+            width: 0;
+            height: 0;
+            border-top: .8rem solid $disable-background-color;
+            border-left: .8rem solid transparent;
+            border-right: .8rem solid transparent;
+            transform: rotate(0);
+            transition: all .3s;
+        }
+
+        .dropdown-icon-up {
+            transform: rotate(180deg);
+        }
+    }
+
+    .disabled {
+
+        &>span {
+            background-color: $disable-background-color;
+        }
+    }
+}
+
+.dropdown-list {
+    position: absolute;
+    padding-top: .6rem;
+    width: 100%;
+    z-index: 1000;
+    border: 1px solid $color-placeholder;
+    border-radius: .3rem;
+    background: $color-white;
+    margin-top: 1rem;
+    box-shadow: $shadow-container;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1, 0);
+    transition: all .4s cubic-bezier(.25,.8,.25,1);
+    transform-origin: top;
+    backface-visibility: hidden;
+
+    &__show {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1, 1);
+    }
+
+    ul {
+        list-style: none;
+        overflow: auto;
+    }
+
+    li {
+        padding: .6rem 1rem;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .filter-textbox {
+        border-bottom: 1px solid rgba(178, 178, 178, 0.7);
+        position: relative;
+        padding: 1rem;
+
+        input {
+            border: 0;
+            width: 100%;
+            padding: 0 0 0 2.6rem;
+        }
+
+        input:focus {
+            outline: none;
+        }
+    }
+}
+
+.multiselect-item-checkbox input[type='checkbox'] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    border-bottom: 1px solid rgba(178, 178, 178, 0.7);
+    padding: 1rem;
+}
+
+.multiselect-item-checkbox input[type='checkbox']:focus+div:before,
+.multiselect-item-checkbox input[type='checkbox']:hover+div:before {
+    border-color: $base-color;    
+}
+
+.multiselect-item-checkbox input[type='checkbox']:active+div:before {
+    transition-duration: .5s;
+}
+
+.multiselect-item-checkbox input[type='checkbox']+div {
+    position: relative;
+    padding-left: 2em;
+    vertical-align: middle;
+    user-select: none;
+    cursor: pointer;
+    margin: 0;
+    color: $color-text;
+}
+
+.multiselect-item-checkbox input[type='checkbox']+div:before {
+    box-sizing: content-box;
+    content: '';
+    color: $base-color;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-top: -.9rem;
+    border: .2rem solid $base-color;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.multiselect-item-checkbox input[type='checkbox']+div:after {
+    box-sizing: content-box;
+    content: '';
+    background-color: $base-color;
+    position: absolute;
+    top: 50%;
+    left: .4rem;
+    width: 1rem;
+    height: 1rem;
+    margin-top: -.5rem;
+    transform: scale(0);
+    transform-origin: 50%;
+    transition: transform .2s ease-out;
+}
+
+.multiselect-item-checkbox input[type='checkbox']:disabled+div:before {
+    border-color: rgba(178, 178, 178, 0.7);;
+}
+
+.multiselect-item-checkbox input[type='checkbox']:disabled:focus+div:before .multiselect-item-checkbox input[type='checkbox']:disabled:hover+div:before {
+    background-color: inherit;
+}
+
+.multiselect-item-checkbox input[type='checkbox']:disabled:checked+div:before {
+    background-color: rgba(178, 178, 178, 0.7);;
+}
+
+.multiselect-item-checkbox input[type='checkbox']+div:after {
+    background-color: transparent;
+    top: 50%;
+    left: .4rem;
+    width: .8rem;
+    height: .3rem;
+    margin-top: -.4rem;
+    border-style: solid;
+    border-color: $color-white;
+    border-width: 0 0 .3rem .3rem;
+    border-image: none;
+    transform: rotate(-45deg) scale(0);
+}
+
+.multiselect-item-checkbox input[type='checkbox']:checked+div:after {
+    content: '';
+    transform: rotate(-45deg) scale(1);
+    transition: transform .2s ease-out;
+}
+
+.multiselect-item-checkbox input[type='checkbox']:checked+div:before {
+    animation: borderscale .2s ease-in;
+    background: $base-color;
+}
+
+.multiselect-item-checkbox input[type='checkbox']:checked+div:after {
+    transform: rotate(-45deg) scale(1);
+}
+
+.multiselect-item-checkbox:hover {
+    background-color: $color-hover;
+    transition: all .3s;
+}
+
+@keyframes borderscale {
+    50% {
+        box-shadow: 0 0 0 .2rem $base-color;
+    }
+}
+
+
+
+
+.multiselect-bordered {
+    border: 2px solid rgba($base-color, .6);
+
+    .dropdown-btn {
+        padding: .4rem 1.2rem;
+    }
+
+}

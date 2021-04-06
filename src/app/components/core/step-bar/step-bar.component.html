@@ -1,0 +1,13 @@
+
+    <div class="step-bar">	
+    <div class="step-bar__arrow clearfix">
+              <div class="step-bar__step step-bar__current" #step> <span><i class="icon ion-md-log-in"></i>Step 1</span> </div>
+              <div class="step-bar__step" #step> <span><i class="icon ion-md-attach"></i>Step 2</span> </div>
+              <div class="step-bar__step" #step> <span><i class="icon ion-md-cloud-upload"></i>Step 3</span> </div>
+              <div class="step-bar__step" #step> <span><i class="icon ion-md-cloud-done"></i>Step 4</span> </div>
+          </div>
+        <div class="step-bar__nav clearfix">
+            <a  class="step-bar__nav--prev" (click)="backward()">Previous</a>
+            <a  class="step-bar__nav--next" (click)="forward()">Next</a>
+        </div>
+    </div>

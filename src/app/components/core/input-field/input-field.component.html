@@ -1,0 +1,12 @@
+<div *ngIf="type==='date'" class="input">      
+  <input [mask]="mask" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" type="text" class="input__field" [ngClass]="inputFieldClass" required>
+  <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+  <span class="input__bar"></span>
+  <label class="input__label">{{ placeholder }}</label>
+</div>
+
+<div *ngIf="type!=='date'" class="input">      
+  <input [(ngModel)]="value" (blur)="onBlur()" [mask]="mask" class="input__field" [ngClass]="inputFieldClass" type="text" required>
+  <span class="input__bar"></span>
+  <label class="input__label">{{ placeholder }}</label>
+</div>
